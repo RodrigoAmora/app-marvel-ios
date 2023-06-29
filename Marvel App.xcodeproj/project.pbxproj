@@ -124,6 +124,22 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		D271A3C92A4DBEC100309F9B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2CAB7142A481D1C001A9E21 /* Main.storyboard */,
+				D2CAB71C2A481D1C001A9E21 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D271A3CA2A4DBED000309F9B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D2CAB7022A481D1C001A9E21 = {
 			isa = PBXGroup;
 			children = (
@@ -149,12 +165,12 @@
 		D2CAB70D2A481D1C001A9E21 /* Marvel App */ = {
 			isa = PBXGroup;
 			children = (
+				D271A3CA2A4DBED000309F9B /* Model */,
+				D271A3C92A4DBEC100309F9B /* View */,
 				D271A3C82A4DBE1C00309F9B /* Controller */,
 				D2CAB70E2A481D1C001A9E21 /* AppDelegate.swift */,
 				D2CAB7102A481D1C001A9E21 /* SceneDelegate.swift */,
-				D2CAB7142A481D1C001A9E21 /* Main.storyboard */,
 				D2CAB71A2A481D1C001A9E21 /* Assets.xcassets */,
-				D2CAB71C2A481D1C001A9E21 /* LaunchScreen.storyboard */,
 				D2CAB71F2A481D1C001A9E21 /* Info.plist */,
 				D2CAB7172A481D1C001A9E21 /* Marvel_App.xcdatamodeld */,
 			);
