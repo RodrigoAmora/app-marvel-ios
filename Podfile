@@ -16,6 +16,7 @@ target 'Marvel App' do
   end
   
   # Pods for Marvel App
+  pod 'Alamofire', '~> 5.7.1'
   pod 'ObjectMapper', '~> 3.5'
 
   target 'Marvel AppTests' do
