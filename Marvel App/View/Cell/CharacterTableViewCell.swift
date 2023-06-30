@@ -35,6 +35,26 @@ class CharacterTableViewCell: UITableViewCell {
     // MARK: - Class methods
     func configureCell(_ character: Character?) {
         nameCharacterLabel.text = character?.name
+        nameCharacterLabel.textAlignment = .center
+        
+        let photoCharacterURL = (character?.thumbnail?.path ?? "")+"."+(character?.thumbnail?.extensionPhoto ?? "")
+        loadImage(from: photoCharacterURL)
+        
+        photoCharacterImageView.layer.cornerRadius = photoCharacterImageView.frame.size.width / 2
+        photoCharacterImageView.clipsToBounds = true
+    }
+    
+    func loadImage(from url: String) {
+        guard let imageURL = URL(string: url) else { return }
+
+        DispatchQueue.global().async {
+            guard let imageData = try? Data(contentsOf: imageURL) else { return }
+
+            let image = UIImage(data: imageData)
+            DispatchQueue.main.async {
+                self.photoCharacterImageView.image = image
+            }
+        }
     }
     
 }

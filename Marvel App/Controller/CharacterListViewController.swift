@@ -65,7 +65,7 @@ extension CharacterListViewController: UITableViewDataSource {
 
 extension CharacterListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 205
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
