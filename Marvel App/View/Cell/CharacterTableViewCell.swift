@@ -24,6 +24,10 @@ class CharacterTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        nameCharacterLabel.textAlignment = .center
+        
+        photoCharacterImageView.layer.cornerRadius = photoCharacterImageView.frame.size.width / 2
+        photoCharacterImageView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,13 +39,9 @@ class CharacterTableViewCell: UITableViewCell {
     // MARK: - Class methods
     func configureCell(_ character: Character?) {
         nameCharacterLabel.text = character?.name
-        nameCharacterLabel.textAlignment = .center
         
         let photoCharacterURL = (character?.thumbnail?.path ?? "")+"."+(character?.thumbnail?.extensionPhoto ?? "")
         loadImage(from: photoCharacterURL)
-        
-        photoCharacterImageView.layer.cornerRadius = photoCharacterImageView.frame.size.width / 2
-        photoCharacterImageView.clipsToBounds = true
     }
     
     func loadImage(from url: String) {
