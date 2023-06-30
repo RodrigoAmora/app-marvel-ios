@@ -8,15 +8,19 @@
 import UIKit
 
 protocol CharacterTableViewCellDelegate: AnyObject {
-    func deleteSalon(_ index: Int)
+    
 }
 
 class CharacterTableViewCell: UITableViewCell {
 
+    // MARK: - IBOutlets
+    @IBOutlet weak var nameCharacterLabel: UILabel!
+    @IBOutlet weak var photoCharacterImageView: UIImageView!
+    
     // MARK: - Atributes
     weak var delegate: CharacterTableViewCellDelegate?
-
     
+    // MARK: - UITableViewCell methods
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,6 +34,7 @@ class CharacterTableViewCell: UITableViewCell {
     
     // MARK: - Class methods
     func configureCell(_ character: Character?) {
+        nameCharacterLabel.text = character?.name
     }
     
 }
