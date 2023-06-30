@@ -8,5 +8,11 @@
 import Foundation
 
 class CharacterViewController: ViewController {
-    
+ 
+    // MARK: - View life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("CharacterViewController")
+        
+    }
 }
