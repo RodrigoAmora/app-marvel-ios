@@ -9,7 +9,9 @@ import Foundation
 import CoreData
 import ObjectMapper
 
-class Character: NSObject {
+class Character: NSObject, Decodable {
+    
+    // MARK: - Atributes
     var id: Int = 0
     var name: String = ""
     var characterDescription: String = ""
