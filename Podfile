@@ -18,7 +18,8 @@ target 'Marvel App' do
   # Pods for Marvel App
   pod 'Alamofire', '~> 5.7.1'
   pod 'ObjectMapper', '~> 3.5'
-
+  pod 'MaterialComponents/Buttons'
+  
   target 'Marvel AppTests' do
     inherit! :search_paths
     # Pods for testing
