@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import MaterialComponents.MaterialButtons
 
 class CharacterListViewController : UIViewController {
     
@@ -17,17 +18,32 @@ class CharacterListViewController : UIViewController {
     // MARK: - Atributes
     private var characterList: [Character] = []
     private lazy var characterService: CharacterService = CharacterService()
+    private let fab = MDCFloatingButton(shape: .default)
     
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         print("CharacterListViewController")
+        self.configureFloatingButton()
         self.configureTableView()
         self.getCharacters()
     }
  
     // MARK: - Methods
+    private func configureFloatingButton() {
+        let widwonWidth = UIScreen.main.bounds.width - 50 - 25
+        let windowHeight = UIScreen.main.bounds.height - 50 - 25
+        
+        fab.frame = CGRect(x: widwonWidth, y: windowHeight, width: 48, height: 48)
+        fab.backgroundColor = .blue
+        fab.setImage( UIImage(systemName: "apple.logo"), for: .normal)
+        fab.addTarget(self, action: #selector(showSearchView), for: .touchUpInside)
+        
+        self.view.addSubview(fab)
+    }
+    
     private func configureTableView() {
+        characterTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         characterTableView.dataSource = self
         characterTableView.delegate = self
         characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
@@ -41,6 +57,10 @@ class CharacterListViewController : UIViewController {
                 self?.characterTableView.reloadData()
             }
         })
+    }
+    
+    @objc func showSearchView() {
+        
     }
     
 }
@@ -58,6 +78,7 @@ extension CharacterListViewController: UITableViewDataSource {
         let character = characterList[indexPath.row]
         cell.configureCell(character)
         cell.delegate = self
+        cell.layoutMargins = UIEdgeInsets.zero
         
         return cell
     }
