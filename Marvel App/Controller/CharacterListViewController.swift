@@ -55,6 +55,7 @@ class CharacterListViewController : UIViewController {
         navBar.topItem?.title = String(localized: "app_name")
         navBar.backgroundColor = UIColor.blue
         
+        searchBar.delegate = self
         searchBar.isHidden = true
         searchBar.placeholder = String(localized: "search_character_by_name")
     }
@@ -117,4 +118,17 @@ extension CharacterListViewController: UITableViewDelegate {
 
 extension CharacterListViewController: CharacterTableViewCellDelegate {
     
+}
+
+extension CharacterListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        characterService.getCharactersByName(name: searchText, completion: { [weak self] characterList, error in
+            let characterList = characterList.data?.results ?? []
+            if !(characterList.isEmpty) {
+                self?.characterList = characterList
+                self?.characterTableView.reloadData()
+                self?.searchBar.isHidden = true
+            }
+        })
+    }
 }

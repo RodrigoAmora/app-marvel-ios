@@ -58,4 +58,46 @@ class CharacterService {
                     }
     }
     
+    
+    func getCharactersByName(name: String, completion: @escaping(_ characterResponse: CharacterResponse, _ error: Int?) -> Void) {
+        let path = "characters?ts=1"+"&apikey="+apiKey+"&hash="+md5Hash+"&name="+name
+        
+        AF.request(baseURL+path,
+                           method: .get,
+                           encoding: URLEncoding.default)
+                    .responseJSON{ response in
+                        switch response.result {
+                            case .success(let json):
+                                switch response.response?.statusCode {
+                                    case 200:
+                                        guard let data = response.data else { return }
+                                        do {
+                                            let characterList = try JSONDecoder().decode(CharacterResponse.self, from: data)
+                                            
+                                            completion(characterList, nil)
+                                        } catch {
+                                            print("Error retriving questions \(error)")
+                                            completion(CharacterResponse(), 0)
+                                        }
+                                        break
+                                   /*
+                                    case 403:
+                                        completion(CharacterResponse(0, nil, ""), 403)
+                                        break
+                                    
+                                    case 500:
+                                        completion(CharacterResponse(0, nil, ""), 500)
+                                        break
+                                    */
+                                    default:
+                                        completion(CharacterResponse(), 0)
+                                        break
+                                }
+                            
+                            case .failure(let error):
+                                completion(CharacterResponse(), 0)
+                                break
+                        }
+                    }
+    }
 }

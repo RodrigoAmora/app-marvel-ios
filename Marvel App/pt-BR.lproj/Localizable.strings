@@ -7,5 +7,8 @@
 */
 "app_name" = "Mavel App";
 
+// ERROR MESSAGES
+"error_no_characters" = "Não há personagens com esse nome!";
+
 // CHACRACTERS
 "search_character_by_name" = "Buscar personagem pelo nome....";
