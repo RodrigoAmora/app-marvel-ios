@@ -31,6 +31,7 @@
 		D2CAB7332A481D1D001A9E21 /* Marvel_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CAB7322A481D1D001A9E21 /* Marvel_AppUITests.swift */; };
 		D2CAB7352A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */; };
 		D2DDA1DF2A52782F0000D947 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA1E12A52782F0000D947 /* Localizable.strings */; };
+		D2DDA1E42A527E5D0000D947 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DDA1E32A527E5D0000D947 /* BaseViewController.swift */; };
 		FB6CD1FD1E5B599B5302BA90 /* Pods_Marvel_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCBCD2C25FEFD1FF258A666 /* Pods_Marvel_AppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marvel_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D2DDA1E02A52782F0000D947 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D2DDA1E22A5278410000D947 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D2DDA1E32A527E5D0000D947 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D356CBA862ABF0EA6E325A6B /* Pods-Marvel App-Marvel AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel App-Marvel AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Marvel App-Marvel AppUITests/Pods-Marvel App-Marvel AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D8AA42743F86C0D9B8DE43AD /* Pods-Marvel App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel App.debug.xcconfig"; path = "Target Support Files/Pods-Marvel App/Pods-Marvel App.debug.xcconfig"; sourceTree = "<group>"; };
 		DC3007F777657C8699B53FB9 /* Pods-Marvel AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Marvel AppTests/Pods-Marvel AppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,9 +190,10 @@
 		D271A3C82A4DBE1C00309F9B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D2CAB7122A481D1C001A9E21 /* ViewController.swift */,
-				D271A3CD2A4DC0D900309F9B /* CharacterViewController.swift */,
+				D2DDA1E32A527E5D0000D947 /* BaseViewController.swift */,
 				D24EEA1B2A4EB06300C3E236 /* CharacterListViewController.swift */,
+				D271A3CD2A4DC0D900309F9B /* CharacterViewController.swift */,
+				D2CAB7122A481D1C001A9E21 /* ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2DDA1E42A527E5D0000D947 /* BaseViewController.swift in Sources */,
 				D271A3CE2A4DC0D900309F9B /* CharacterViewController.swift in Sources */,
 				D2CAB7132A481D1C001A9E21 /* ViewController.swift in Sources */,
 				D24DF2542A4F00FC00D99A81 /* Thumbnail.swift in Sources */,

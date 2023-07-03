@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import MaterialComponents.MaterialButtons
 
-class CharacterListViewController : UIViewController {
+class CharacterListViewController : BaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var characterTableView: UITableView!
@@ -56,6 +56,7 @@ class CharacterListViewController : UIViewController {
         navBar.backgroundColor = UIColor.blue
         
         searchBar.delegate = self
+        searchBar.showsLargeContentViewer = true
         searchBar.isHidden = true
         searchBar.placeholder = String(localized: "search_character_by_name")
     }
@@ -121,13 +122,16 @@ extension CharacterListViewController: CharacterTableViewCellDelegate {
 }
 
 extension CharacterListViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        characterService.getCharactersByName(name: searchText, completion: { [weak self] characterList, error in
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let nameCharacter = searchBar.text ?? ""
+        characterService.getCharactersByName(name: nameCharacter, completion: { [weak self] characterList, error in
             let characterList = characterList.data?.results ?? []
             if !(characterList.isEmpty) {
                 self?.characterList = characterList
                 self?.characterTableView.reloadData()
                 self?.searchBar.isHidden = true
+            } else {
+                self?.showAlert(title: "", message: String(localized: "error_no_characters"))
             }
         })
     }
