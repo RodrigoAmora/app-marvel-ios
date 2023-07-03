@@ -62,20 +62,37 @@ class CharacterListViewController : BaseViewController {
     }
     
     private func getCharacters() {
-//        characterService.getCharacters(completion: { [weak self] characterList, error in
-//            let characterList = characterList.data?.results ?? []
-//            if !(characterList.isEmpty) {
-//                self?.characterList = characterList
-//                self?.characterTableView.reloadData()
-//            }
-//        })
         characterViewModel.getCharacters(completion: { resource in
-            if ((resource.result??.isEmpty)! || resource.result == nil) {
+            if resource.errorCode != nil && resource.errorCode ?? 0 > 0 {
+                self.showError(errorCode: resource.errorCode ?? 0)
+            }
+            
+            guard let list = resource.result else { return }
+            if (list?.count == 0) {
                 self.showError(errorCode: resource.errorCode ?? 0)
             } else {
                 guard let list = resource.result else { return }
                 self.characterList = list ?? []
                 self.characterTableView.reloadData()
+            }
+        })
+    }
+    
+    private func getCharactersByName(name: String) {
+        let nameCharacter = searchBar.text ?? ""
+        characterViewModel.getCharactersByName(name: nameCharacter, completion: { [weak self] resource in
+            if resource.errorCode != nil && resource.errorCode ?? 0 > 0 {
+                self?.showError(errorCode: resource.errorCode ?? 0)
+            }
+            
+            guard let list = resource.result else { return }
+            if (list?.count == 0) {
+                self?.showAlert(title: "", message: String(localized: "error_no_characters"))
+            } else {
+                guard let list = resource.result else { return }
+                self?.characterList = list ?? []
+                self?.characterTableView.reloadData()
+                self?.searchBar.isHidden = true
             }
         })
     }
@@ -136,16 +153,6 @@ extension CharacterListViewController: UISearchBarDelegate {
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let nameCharacter = searchBar.text ?? ""
-//        characterService.getCharactersByName(name: nameCharacter, completion: { [weak self] characterList, error in
-//            let characterList = characterList.data?.results ?? []
-//            if !(characterList.isEmpty) {
-//                self?.characterList = characterList
-//                self?.characterTableView.reloadData()
-//                self?.searchBar.isHidden = true
-//            } else {
-//                self?.showAlert(title: "", message: String(localized: "error_no_characters"))
-//            }
-//        })
-        
+        getCharactersByName(name: nameCharacter)
     }
 }

@@ -22,4 +22,11 @@ class CharacterViewModel {
         return resource
     }
     
+    func getCharactersByName(name: String, completion: @escaping(_ characterResponse: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
+        characterRepository.getCharactersByName(name: name, completion: { [weak self] resource in
+            completion(resource)
+        })
+    }
+    
 }
+
