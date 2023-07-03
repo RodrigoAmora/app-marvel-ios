@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Marvel App
+
+  Created by Rodrigo Amora on 03/07/23.
+  
+*/
+"app_name" = "Mavel App";
+
+// CHACRACTERS
+"search_character_by_name" = "Search character by name....";

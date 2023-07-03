@@ -30,6 +30,7 @@
 		D2CAB7292A481D1D001A9E21 /* Marvel_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CAB7282A481D1D001A9E21 /* Marvel_AppTests.swift */; };
 		D2CAB7332A481D1D001A9E21 /* Marvel_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CAB7322A481D1D001A9E21 /* Marvel_AppUITests.swift */; };
 		D2CAB7352A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */; };
+		D2DDA1DF2A52782F0000D947 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA1E12A52782F0000D947 /* Localizable.strings */; };
 		FB6CD1FD1E5B599B5302BA90 /* Pods_Marvel_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCBCD2C25FEFD1FF258A666 /* Pods_Marvel_AppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,8 @@
 		D2CAB72E2A481D1D001A9E21 /* Marvel AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Marvel AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CAB7322A481D1D001A9E21 /* Marvel_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marvel_AppUITests.swift; sourceTree = "<group>"; };
 		D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marvel_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D2DDA1E02A52782F0000D947 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D2DDA1E22A5278410000D947 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D356CBA862ABF0EA6E325A6B /* Pods-Marvel App-Marvel AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel App-Marvel AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Marvel App-Marvel AppUITests/Pods-Marvel App-Marvel AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D8AA42743F86C0D9B8DE43AD /* Pods-Marvel App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel App.debug.xcconfig"; path = "Target Support Files/Pods-Marvel App/Pods-Marvel App.debug.xcconfig"; sourceTree = "<group>"; };
 		DC3007F777657C8699B53FB9 /* Pods-Marvel AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Marvel AppTests/Pods-Marvel AppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +249,7 @@
 				D2CAB71A2A481D1C001A9E21 /* Assets.xcassets */,
 				D2CAB71F2A481D1C001A9E21 /* Info.plist */,
 				D2CAB7172A481D1C001A9E21 /* Marvel_App.xcdatamodeld */,
+				D2DDA1E12A52782F0000D947 /* Localizable.strings */,
 			);
 			path = "Marvel App";
 			sourceTree = "<group>";
@@ -358,6 +362,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = D2CAB7022A481D1C001A9E21;
 			productRefGroup = D2CAB70C2A481D1C001A9E21 /* Products */;
@@ -379,6 +384,7 @@
 				D24EEA1E2A4EB07300C3E236 /* CharacterListViewController.xib in Resources */,
 				D271A3D02A4DC10100309F9B /* CharacterViewController.xib in Resources */,
 				D2CAB71E2A481D1C001A9E21 /* LaunchScreen.storyboard in Resources */,
+				D2DDA1DF2A52782F0000D947 /* Localizable.strings in Resources */,
 				D24EEA232A4EB13F00C3E236 /* CharacterTableViewCell.xib in Resources */,
 				D2CAB71B2A481D1C001A9E21 /* Assets.xcassets in Resources */,
 				D2CAB7162A481D1C001A9E21 /* Main.storyboard in Resources */,
@@ -573,6 +579,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		D2DDA1E12A52782F0000D947 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2DDA1E02A52782F0000D947 /* en */,
+				D2DDA1E22A5278410000D947 /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -580,6 +595,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -640,6 +656,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
