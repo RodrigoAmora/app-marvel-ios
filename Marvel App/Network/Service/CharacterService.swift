@@ -37,15 +37,15 @@ class CharacterService {
                                             completion(CharacterResponse(), 0)
                                         }
                                         break
-                                   /*
+                                   
                                     case 403:
-                                        completion(CharacterResponse(0, nil, ""), 403)
+                                        completion(CharacterResponse(), 430)
                                         break
                                     
                                     case 500:
-                                        completion(CharacterResponse(0, nil, ""), 500)
+                                        completion(CharacterResponse(), 500)
                                         break
-                                    */
+                                    
                                     default:
                                         completion(CharacterResponse(), 0)
                                         break
@@ -57,7 +57,6 @@ class CharacterService {
                         }
                     }
     }
-    
     
     func getCharactersByName(name: String, completion: @escaping(_ characterResponse: CharacterResponse, _ error: Int?) -> Void) {
         let path = "characters?ts=1"+"&apikey="+apiKey+"&hash="+md5Hash+"&name="+name
