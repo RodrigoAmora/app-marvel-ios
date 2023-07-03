@@ -36,9 +36,9 @@ class CharacterListViewController : BaseViewController {
         let widwonWidth = UIScreen.main.bounds.width - 50 - 25
         let windowHeight = UIScreen.main.bounds.height - 50 - 25
         
-        fab.frame = CGRect(x: widwonWidth, y: windowHeight, width: 48, height: 48)
+        fab.frame = CGRect(x: widwonWidth, y: windowHeight, width: 50, height: 50)
         fab.backgroundColor = .blue
-        fab.setImage( UIImage(systemName: "apple.logo"), for: .normal)
+        fab.setImage( UIImage(named: "ic_search"), for: .normal)
         fab.addTarget(self, action: #selector(showSearchView), for: .touchUpInside)
         
         self.view.addSubview(fab)
