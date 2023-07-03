@@ -18,7 +18,7 @@ class CharacterListViewController : BaseViewController {
     
     // MARK: - Atributes
     private var characterList: [Character] = []
-    private lazy var characterRepository: CharacterRepository = CharacterRepository()
+    private lazy var characterViewModel: CharacterViewModel = CharacterViewModel()
     private let fab = MDCFloatingButton(shape: .default)
     
     // MARK: - View life cycle
@@ -69,13 +69,15 @@ class CharacterListViewController : BaseViewController {
 //                self?.characterTableView.reloadData()
 //            }
 //        })
-        var resource = characterRepository.getCharacters()
-        if ((resource?.result?.isEmpty) != nil) {
-            showError(errorCode: resource?.errorCode ?? 0)
-        } else {
-            characterList = resource?.result ?? []
-            characterTableView.reloadData()
-        }
+        characterViewModel.getCharacters(completion: { resource in
+            if ((resource.result??.isEmpty)! || resource.result == nil) {
+                self.showError(errorCode: resource.errorCode ?? 0)
+            } else {
+                guard let list = resource.result else { return }
+                self.characterList = list ?? []
+                self.characterTableView.reloadData()
+            }
+        })
     }
     
     @objc func showSearchView() {
