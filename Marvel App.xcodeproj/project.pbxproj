@@ -32,6 +32,9 @@
 		D2CAB7352A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */; };
 		D2DDA1DF2A52782F0000D947 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2DDA1E12A52782F0000D947 /* Localizable.strings */; };
 		D2DDA1E42A527E5D0000D947 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DDA1E32A527E5D0000D947 /* BaseViewController.swift */; };
+		D2DDA1E72A5297080000D947 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DDA1E62A5297080000D947 /* CharacterViewModel.swift */; };
+		D2DDA1E92A52985C0000D947 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DDA1E82A52985C0000D947 /* Resource.swift */; };
+		D2DDA1ED2A529E940000D947 /* CharacterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DDA1EC2A529E940000D947 /* CharacterRepository.swift */; };
 		FB6CD1FD1E5B599B5302BA90 /* Pods_Marvel_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCBCD2C25FEFD1FF258A666 /* Pods_Marvel_AppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +89,9 @@
 		D2DDA1E02A52782F0000D947 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D2DDA1E22A5278410000D947 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2DDA1E32A527E5D0000D947 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D2DDA1E62A5297080000D947 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
+		D2DDA1E82A52985C0000D947 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		D2DDA1EC2A529E940000D947 /* CharacterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRepository.swift; sourceTree = "<group>"; };
 		D356CBA862ABF0EA6E325A6B /* Pods-Marvel App-Marvel AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel App-Marvel AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Marvel App-Marvel AppUITests/Pods-Marvel App-Marvel AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D8AA42743F86C0D9B8DE43AD /* Pods-Marvel App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel App.debug.xcconfig"; path = "Target Support Files/Pods-Marvel App/Pods-Marvel App.debug.xcconfig"; sourceTree = "<group>"; };
 		DC3007F777657C8699B53FB9 /* Pods-Marvel AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Marvel AppTests/Pods-Marvel AppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +180,7 @@
 			children = (
 				D24EEA292A4EBF9F00C3E236 /* Response */,
 				D24EEA242A4EB5A200C3E236 /* Service */,
+				D2DDA1E82A52985C0000D947 /* Resource.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -244,15 +251,17 @@
 		D2CAB70D2A481D1C001A9E21 /* Marvel App */ = {
 			isa = PBXGroup;
 			children = (
+				D2DDA1EB2A529E7C0000D947 /* Repository */,
 				D24DF2522A4F008D00D99A81 /* AppDelegate */,
-				D24EEA272A4EBF7200C3E236 /* Network */,
-				D271A3CA2A4DBED000309F9B /* Model */,
-				D271A3C92A4DBEC100309F9B /* View */,
-				D271A3C82A4DBE1C00309F9B /* Controller */,
 				D2CAB71A2A481D1C001A9E21 /* Assets.xcassets */,
+				D271A3C82A4DBE1C00309F9B /* Controller */,
 				D2CAB71F2A481D1C001A9E21 /* Info.plist */,
-				D2CAB7172A481D1C001A9E21 /* Marvel_App.xcdatamodeld */,
 				D2DDA1E12A52782F0000D947 /* Localizable.strings */,
+				D2CAB7172A481D1C001A9E21 /* Marvel_App.xcdatamodeld */,
+				D271A3CA2A4DBED000309F9B /* Model */,
+				D24EEA272A4EBF7200C3E236 /* Network */,
+				D271A3C92A4DBEC100309F9B /* View */,
+				D2DDA1E52A5296E50000D947 /* ViewModel */,
 			);
 			path = "Marvel App";
 			sourceTree = "<group>";
@@ -272,6 +281,22 @@
 				D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */,
 			);
 			path = "Marvel AppUITests";
+			sourceTree = "<group>";
+		};
+		D2DDA1E52A5296E50000D947 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D2DDA1E62A5297080000D947 /* CharacterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D2DDA1EB2A529E7C0000D947 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D2DDA1EC2A529E940000D947 /* CharacterRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,13 +544,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2DDA1E42A527E5D0000D947 /* BaseViewController.swift in Sources */,
+				D2DDA1ED2A529E940000D947 /* CharacterRepository.swift in Sources */,
 				D271A3CE2A4DC0D900309F9B /* CharacterViewController.swift in Sources */,
 				D2CAB7132A481D1C001A9E21 /* ViewController.swift in Sources */,
+				D2DDA1E92A52985C0000D947 /* Resource.swift in Sources */,
 				D24DF2542A4F00FC00D99A81 /* Thumbnail.swift in Sources */,
 				D24EEA2D2A4EC01400C3E236 /* CharacterData.swift in Sources */,
 				D24EEA2B2A4EBFD700C3E236 /* CharacterResponse.swift in Sources */,
 				D2CAB70F2A481D1C001A9E21 /* AppDelegate.swift in Sources */,
 				D271A3CC2A4DBF1000309F9B /* Character.swift in Sources */,
+				D2DDA1E72A5297080000D947 /* CharacterViewModel.swift in Sources */,
 				D24EEA1C2A4EB06300C3E236 /* CharacterListViewController.swift in Sources */,
 				D2CAB7192A481D1C001A9E21 /* Marvel_App.xcdatamodeld in Sources */,
 				D24EEA262A4EB5B900C3E236 /* CharacterService.swift in Sources */,

@@ -18,7 +18,7 @@ class CharacterListViewController : BaseViewController {
     
     // MARK: - Atributes
     private var characterList: [Character] = []
-    private lazy var characterService: CharacterService = CharacterService()
+    private lazy var characterRepository: CharacterRepository = CharacterRepository()
     private let fab = MDCFloatingButton(shape: .default)
     
     // MARK: - View life cycle
@@ -62,13 +62,20 @@ class CharacterListViewController : BaseViewController {
     }
     
     private func getCharacters() {
-        characterService.getCharacters(completion: { [weak self] characterList, error in
-            let characterList = characterList.data?.results ?? []
-            if !(characterList.isEmpty) {
-                self?.characterList = characterList
-                self?.characterTableView.reloadData()
-            }
-        })
+//        characterService.getCharacters(completion: { [weak self] characterList, error in
+//            let characterList = characterList.data?.results ?? []
+//            if !(characterList.isEmpty) {
+//                self?.characterList = characterList
+//                self?.characterTableView.reloadData()
+//            }
+//        })
+        var resource = characterRepository.getCharacters()
+        if ((resource?.result?.isEmpty) != nil) {
+            showError(errorCode: resource?.errorCode ?? 0)
+        } else {
+            characterList = resource?.result ?? []
+            characterTableView.reloadData()
+        }
     }
     
     @objc func showSearchView() {
@@ -82,6 +89,7 @@ class CharacterListViewController : BaseViewController {
 }
 
 extension CharacterListViewController: UITableViewDataSource {
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return characterList.count
     }
@@ -101,6 +109,7 @@ extension CharacterListViewController: UITableViewDataSource {
 }
 
 extension CharacterListViewController: UITableViewDelegate {
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 205
     }
@@ -122,17 +131,19 @@ extension CharacterListViewController: CharacterTableViewCellDelegate {
 }
 
 extension CharacterListViewController: UISearchBarDelegate {
+    // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let nameCharacter = searchBar.text ?? ""
-        characterService.getCharactersByName(name: nameCharacter, completion: { [weak self] characterList, error in
-            let characterList = characterList.data?.results ?? []
-            if !(characterList.isEmpty) {
-                self?.characterList = characterList
-                self?.characterTableView.reloadData()
-                self?.searchBar.isHidden = true
-            } else {
-                self?.showAlert(title: "", message: String(localized: "error_no_characters"))
-            }
-        })
+//        characterService.getCharactersByName(name: nameCharacter, completion: { [weak self] characterList, error in
+//            let characterList = characterList.data?.results ?? []
+//            if !(characterList.isEmpty) {
+//                self?.characterList = characterList
+//                self?.characterTableView.reloadData()
+//                self?.searchBar.isHidden = true
+//            } else {
+//                self?.showAlert(title: "", message: String(localized: "error_no_characters"))
+//            }
+//        })
+        
     }
 }
