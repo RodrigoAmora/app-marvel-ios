@@ -13,6 +13,7 @@ class CharacterListViewController : UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var characterTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var navBar: UINavigationBar!
     
     // MARK: - Atributes
@@ -24,6 +25,7 @@ class CharacterListViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("CharacterListViewController")
+        self.configureNavBarAndSearchBar()
         self.configureFloatingButton()
         self.configureTableView()
         self.getCharacters()
@@ -49,6 +51,14 @@ class CharacterListViewController : UIViewController {
         characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
     }
     
+    private func configureNavBarAndSearchBar() {
+        navBar.topItem?.title = String(localized: "app_name")
+        navBar.backgroundColor = UIColor.blue
+        
+        searchBar.isHidden = true
+        searchBar.placeholder = String(localized: "search_character_by_name")
+    }
+    
     private func getCharacters() {
         characterService.getCharacters(completion: { [weak self] characterList, error in
             let characterList = characterList.data?.results ?? []
@@ -60,7 +70,11 @@ class CharacterListViewController : UIViewController {
     }
     
     @objc func showSearchView() {
-        
+        if searchBar.isHidden {
+            searchBar.isHidden = false
+        } else {
+            searchBar.isHidden = true
+        }
     }
     
 }
