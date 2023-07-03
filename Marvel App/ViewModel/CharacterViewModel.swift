@@ -11,10 +11,15 @@ class CharacterViewModel {
     
     // MARK: - Atributes
     private lazy var characterRepository: CharacterRepository = CharacterRepository()
+    private var resource: Resource<[Character]?>?
     
     // MARK: - Methods
-    func getCharacters() -> Resource<[Character]>? {
-        return characterRepository.getCharacters()
+    func getCharacters(completion: @escaping(_ characterResponse: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
+        characterRepository.getCharacters(completion: { [weak self] resource in
+            completion(resource)
+        })
+        
+        return resource
     }
     
 }
