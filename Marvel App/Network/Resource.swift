@@ -12,7 +12,7 @@ class Resource<T> {
     var result: T?
     var errorCode: Int? = nil
     
-    init(result: T?, errorCode: Int? = nil) {
+    init(result: T? = nil, errorCode: Int? = nil) {
         self.result = result
         self.errorCode = errorCode
     }
