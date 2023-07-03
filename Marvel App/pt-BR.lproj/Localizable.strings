@@ -8,7 +8,10 @@
 "app_name" = "Mavel App";
 
 // ERROR MESSAGES
+"error_access_denied" = "Você não tem permissão!";
+"error_cant_was_possible_perform_operation" = "Não foi possível realizar a operação.";
 "error_no_characters" = "Não há personagens com esse nome!";
+"error_service_unavailable" = "Serviço indisponível, por favor tente mais tarde.";
 
 // CHACRACTERS
 "search_character_by_name" = "Buscar personagem pelo nome....";
