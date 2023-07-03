@@ -11,19 +11,22 @@ class CharacterRepository {
     
     // MARK: - Atributes
     private lazy var characterService: CharacterService = CharacterService()
-    private var resource: Resource<[Character]>?
+    private var resource: Resource<[Character]?>?
     
     // MARK: - Methods
-    func getCharacters() -> Resource<[Character]>? {
-        characterService.getCharacters(completion: { [weak self] characterList, error in
+    func getCharacters(completion: @escaping(_ resource: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
+        characterService.getCharacters(completion: { [weak self]characterList, error in
             let characterList = characterList.data?.results ?? []
             if !(characterList.isEmpty) {
-                self?.resource = Resource(result: characterList, errorCode: 0)
+                self?.resource = Resource<[Character]?>(result: characterList, errorCode: 0)
+                completion((self?.resource)!)
             } else {
-                self?.resource = Resource(result: nil, errorCode: error)
+                self?.resource = Resource<[Character]?>(result: nil, errorCode: error)
+                completion((self?.resource)!)
             }
         })
-        return self.resource
+        
+        return resource
     }
     
 }
