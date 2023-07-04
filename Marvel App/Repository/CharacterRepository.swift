@@ -10,19 +10,38 @@ import Foundation
 class CharacterRepository {
     
     // MARK: - Atributes
+    private lazy var characterDao: CharacterDao = CharacterDao()
     private lazy var characterService: CharacterService = CharacterService()
     private var resource: Resource<[Character]?>?
     
     // MARK: - Methods
     func getCharacters(completion: @escaping(_ resource: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
+        resource = Resource(result: characterDao.recovery())
+        
+        characterService.getCharacters(completion: { [weak self]characterList, error in
+            let characterList = characterList.data?.results ?? []
+            if !(characterList.isEmpty) {
+                CharacterDao().save(characterList)
+                self?.resource = Resource<[Character]?>(result: characterList, errorCode: 0)
+                completion((self?.resource)!)
+            } else {
+                let newResource = Resource<[Character]?>(result: self?.resource?.result, errorCode: error)
+                completion(newResource)
+            }
+        })
+        
+        return resource
+    }
+    
+    func getCharacters() -> Resource<[Character]?>? {
+        resource = Resource(result: characterDao.recovery())
+        
         characterService.getCharacters(completion: { [weak self]characterList, error in
             let characterList = characterList.data?.results ?? []
             if !(characterList.isEmpty) {
                 self?.resource = Resource<[Character]?>(result: characterList, errorCode: 0)
-                completion((self?.resource)!)
             } else {
                 self?.resource = Resource<[Character]?>(result: nil, errorCode: error)
-                completion((self?.resource)!)
             }
         })
         
