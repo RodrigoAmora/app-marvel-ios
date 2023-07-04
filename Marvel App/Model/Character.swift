@@ -16,6 +16,14 @@ class Character: NSObject, NSCoding, Decodable {
     var characterDescription: String = ""
     var thumbnail: Thumbnail?
     
+    // MARK: - Init
+    init(id: Int, name: String, characterDescription: String, thumbnail: Thumbnail) {
+        self.id = id
+        self.name = name
+        self.characterDescription = characterDescription
+        self.thumbnail = thumbnail
+    }
+    
     // MARK: - NSCoding
     func encode(with coder: NSCoder) {
         coder.encode(id, forKey: "id")
@@ -25,7 +33,7 @@ class Character: NSObject, NSCoding, Decodable {
     }
     
     required init?(coder: NSCoder) {
-        id = coder.decodeObject(forKey: "id") as! Int
+        id = coder.decodeInteger(forKey: "id") as! Int
         name = coder.decodeObject(forKey: "name") as! String
         characterDescription = coder.decodeObject(forKey: "description") as! String
         thumbnail = coder.decodeObject(forKey: "thumbnail") as! Thumbnail
