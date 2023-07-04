@@ -11,9 +11,9 @@ import Alamofire
 class CharacterService {
     
     // MARK: - Atributes
-    private let baseURL = "https://gateway.marvel.com/v1/public/"
-    private let apiKey = "d17cef9472abf96413048a10bf24e04a"
-    private let md5Hash = "cd79db65cd307fc9503bdadcfd9179e2"
+    private let baseURL = MarvelApiKey.BASE_URL
+    private let apiKey = MarvelApiKey.API_KEY
+    private let md5Hash = MarvelApiKey.MD5_HASH
     
     // MARK: - Methods
     func getCharacters(completion: @escaping(_ characterResponse: CharacterResponse, _ error: Int?) -> Void) {

@@ -18,6 +18,7 @@
 		D24EEA2B2A4EBFD700C3E236 /* CharacterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24EEA2A2A4EBFD700C3E236 /* CharacterResponse.swift */; };
 		D24EEA2D2A4EC01400C3E236 /* CharacterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24EEA2C2A4EC01400C3E236 /* CharacterData.swift */; };
 		D25D1E3B2A539ABF003B9997 /* CharacterDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D1E3A2A539ABF003B9997 /* CharacterDao.swift */; };
+		D25D1E3D2A53AF5B003B9997 /* MarvelApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D1E3C2A53AF5B003B9997 /* MarvelApiKey.swift */; };
 		D271A3CC2A4DBF1000309F9B /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271A3CB2A4DBF1000309F9B /* Character.swift */; };
 		D271A3CE2A4DC0D900309F9B /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271A3CD2A4DC0D900309F9B /* CharacterViewController.swift */; };
 		D271A3D02A4DC10100309F9B /* CharacterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */; };
@@ -71,6 +72,7 @@
 		D24EEA2A2A4EBFD700C3E236 /* CharacterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResponse.swift; sourceTree = "<group>"; };
 		D24EEA2C2A4EC01400C3E236 /* CharacterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterData.swift; sourceTree = "<group>"; };
 		D25D1E3A2A539ABF003B9997 /* CharacterDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDao.swift; sourceTree = "<group>"; };
+		D25D1E3C2A53AF5B003B9997 /* MarvelApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApiKey.swift; sourceTree = "<group>"; };
 		D271A3CB2A4DBF1000309F9B /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		D271A3CD2A4DC0D900309F9B /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterViewController.xib; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				D24EEA292A4EBF9F00C3E236 /* Response */,
 				D24EEA242A4EB5A200C3E236 /* Service */,
 				D2DDA1E82A52985C0000D947 /* Resource.swift */,
+				D25D1E3C2A53AF5B003B9997 /* MarvelApiKey.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				D271A3CE2A4DC0D900309F9B /* CharacterViewController.swift in Sources */,
 				D2CAB7132A481D1C001A9E21 /* ViewController.swift in Sources */,
 				D2DDA1E92A52985C0000D947 /* Resource.swift in Sources */,
+				D25D1E3D2A53AF5B003B9997 /* MarvelApiKey.swift in Sources */,
 				D24DF2542A4F00FC00D99A81 /* Thumbnail.swift in Sources */,
 				D24EEA2D2A4EC01400C3E236 /* CharacterData.swift in Sources */,
 				D24EEA2B2A4EBFD700C3E236 /* CharacterResponse.swift in Sources */,
