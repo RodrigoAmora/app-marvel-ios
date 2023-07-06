@@ -274,11 +274,11 @@
 		D2CAB70D2A481D1C001A9E21 /* Marvel App */ = {
 			isa = PBXGroup;
 			children = (
-				D240F8AC2A56AAC000C65EB9 /* Extension */,
 				D24DF2522A4F008D00D99A81 /* AppDelegate */,
 				D2CAB71A2A481D1C001A9E21 /* Assets.xcassets */,
 				D271A3C82A4DBE1C00309F9B /* Controller */,
 				D25D1E392A539A90003B9997 /* Dao */,
+				D240F8AC2A56AAC000C65EB9 /* Extension */,
 				D2CAB71F2A481D1C001A9E21 /* Info.plist */,
 				D2DDA1E12A52782F0000D947 /* Localizable.strings */,
 				D2CAB7172A481D1C001A9E21 /* Marvel_App.xcdatamodeld */,

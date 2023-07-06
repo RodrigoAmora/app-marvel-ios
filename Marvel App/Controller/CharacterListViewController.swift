@@ -134,13 +134,12 @@ extension CharacterListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character = characterList[indexPath.row]
-        /*
-        let mapaViewController = MapaViewController.instanciar(salon)
-        mapaViewController.modalPresentationStyle = .automatic
+        let character: Character = characterList[indexPath.row]
+        let characterViewController = CharacterViewController.intanciate(character)
+        characterViewController.modalPresentationStyle = .automatic
         
-        present(mapaViewController, animated: true, completion: nil)
-         */
+        //present(characterViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(characterViewController, animated: true)
     }
     
 }
