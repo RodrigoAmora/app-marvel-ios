@@ -41,20 +41,7 @@ class CharacterTableViewCell: UITableViewCell {
         nameCharacterLabel.text = character?.name
         
         let photoCharacterURL = (character?.thumbnail?.path ?? "")+"."+(character?.thumbnail?.extensionPhoto ?? "")
-        loadImage(from: photoCharacterURL)
-    }
-    
-    func loadImage(from url: String) {
-        guard let imageURL = URL(string: url) else { return }
-
-        DispatchQueue.global().async {
-            guard let imageData = try? Data(contentsOf: imageURL) else { return }
-
-            let image = UIImage(data: imageData)
-            DispatchQueue.main.async {
-                self.photoCharacterImageView.image = image
-            }
-        }
+        photoCharacterImageView.loadImageFromURL(photoCharacterURL)
     }
     
 }
