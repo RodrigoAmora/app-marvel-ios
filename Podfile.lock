@@ -51,11 +51,13 @@ PODS:
   - MDFInternationalization (3.0.0)
   - MDFTextAccessibility (2.0.1)
   - ObjectMapper (3.5.3)
+  - Sheeeeeeeeet (3.2.2)
 
 DEPENDENCIES:
   - Alamofire (~> 5.7.1)
   - MaterialComponents/Buttons
   - ObjectMapper (~> 3.5)
+  - Sheeeeeeeeet
 
 SPEC REPOS:
   trunk:
@@ -64,6 +66,7 @@ SPEC REPOS:
     - MDFInternationalization
     - MDFTextAccessibility
     - ObjectMapper
+    - Sheeeeeeeeet
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
@@ -71,7 +74,8 @@ SPEC CHECKSUMS:
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  Sheeeeeeeeet: 6e9f9b1270fe14986fc3ccd9e878dca7d53dcebe
 
-PODFILE CHECKSUM: c47c26ed70a0a817994fd65bddca843b2e92d7c6
+PODFILE CHECKSUM: 5e1a812f686974f37fb320db332d028e78cc577f
 
 COCOAPODS: 1.12.1

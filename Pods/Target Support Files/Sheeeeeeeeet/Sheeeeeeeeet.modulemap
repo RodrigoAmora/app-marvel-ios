@@ -1,0 +1,6 @@
+framework module Sheeeeeeeeet {
+  umbrella header "Sheeeeeeeeet-umbrella.h"
+
+  export *
+  module * { export * }
+}
