@@ -10,6 +10,14 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    func changeViewControllerWithPresent(_ viewController: UIViewController) {
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    func changeViewControllerWithPushViewController(_ viewController: UIViewController) {
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title,
                                       message: message,

@@ -147,8 +147,7 @@ extension CharacterListViewController: UITableViewDelegate {
         let characterViewController = CharacterViewController.intanciate(character)
         characterViewController.modalPresentationStyle = .automatic
         
-        //present(characterViewController, animated: true, completion: nil)
-        self.navigationController?.pushViewController(characterViewController, animated: true)
+        self.changeViewControllerWithPushViewController(characterViewController)
     }
     
 }
