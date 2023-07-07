@@ -55,10 +55,7 @@ class CharacterListViewController : BaseViewController {
         characterTableView.prefetchDataSource = self
         characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
         characterTableView.isScrollEnabled = true
-        characterTableView.remembersLastFocusedIndexPath = false
-        
-//        refreshControl.addTarget(self, action: #selector(paginateTableView), for: .valueChanged)
-//        characterTableView.refreshControl = refreshControl
+        characterTableView.remembersLastFocusedIndexPath = true
     }
     
     private func configureNavBarAndSearchBar() {
@@ -72,13 +69,10 @@ class CharacterListViewController : BaseViewController {
     }
     
     private func getCharacters() {
-        characterViewModel.getCharacters(offset: offset, completion: { resource in
-           
-        })
+        characterViewModel.getCharacters(offset: offset, completion: { resource in })
     }
     
     @objc private func paginateTableView() {
-//        currentPage += 1
         offset += 20
         getCharacters()
         refreshControl.endRefreshing()
@@ -126,7 +120,6 @@ extension CharacterListViewController: UITableViewDataSource {
 
         let character = characters[indexPath.row]
         cell.configureCell(character)
-        cell.delegate = self
         cell.layoutMargins = UIEdgeInsets.zero
         
         return cell
@@ -153,14 +146,12 @@ extension CharacterListViewController: UITableViewDelegate {
     
 }
 
+// MARK: - UITableViewDataSourcePrefetching
 extension CharacterListViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         paginateTableView()
     }
 }
-
-// MARK: - CharacterTableViewCellDelegate
-extension CharacterListViewController: CharacterTableViewCellDelegate {}
 
 // MARK: - UISearchBarDelegate
 extension CharacterListViewController: UISearchBarDelegate {
@@ -170,19 +161,7 @@ extension CharacterListViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: - UIScrollViewDelegate
-extension CharacterListViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let pos = scrollView.contentOffset.y
-        let scrollHeight = characterTableView.contentSize.height-50 - scrollView.frame.size.height
-        if pos > scrollHeight {
-            paginateTableView()
-            scrollView.contentOffset.y = scrollHeight
-        }
-    }
-}
-
-// MARK: - CharacterProtocol
+// MARK: - CharacterDelegaate
 extension CharacterListViewController: CharacterDelegaate {
     func populateTableView(characters: [Character]) {
         self.characters = characters
