@@ -52,10 +52,14 @@ class CharacterListViewController : BaseViewController {
         characterTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         characterTableView.dataSource = self
         characterTableView.delegate = self
-        characterTableView.prefetchDataSource = self
         characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
         characterTableView.isScrollEnabled = true
         characterTableView.remembersLastFocusedIndexPath = true
+        
+        
+        refreshControl.addTarget(self, action: #selector(paginateTableView), for: .valueChanged)
+        characterTableView.refreshControl = refreshControl
+        refreshControl.endRefreshing()
     }
     
     private func configureNavBarAndSearchBar() {
@@ -75,7 +79,7 @@ class CharacterListViewController : BaseViewController {
     @objc private func paginateTableView() {
         offset += 20
         getCharacters()
-        refreshControl.endRefreshing()
+        //refreshControl.endRefreshing()
     }
     
     private func getCharactersByName(name: String) {
@@ -111,7 +115,11 @@ extension CharacterListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+        if indexPath.row == characters.count-1 {
+            paginateTableView()
+            let targetRonIdexPath = IndexPath(row: indexPath.row-5, section: 0)
+            characterTableView.scrollToRow(at: targetRonIdexPath, at: .middle, animated: false)
+        }
     }
 }
 
@@ -127,13 +135,6 @@ extension CharacterListViewController: UITableViewDelegate {
         characterViewController.modalPresentationStyle = .automatic
         
         self.changeViewControllerWithPushViewController(characterViewController)
-    }
-}
-
-// MARK: - UITableViewDataSourcePrefetching
-extension CharacterListViewController: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        paginateTableView()
     }
 }
 
