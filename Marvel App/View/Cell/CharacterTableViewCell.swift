@@ -7,18 +7,11 @@
 
 import UIKit
 
-protocol CharacterTableViewCellDelegate: AnyObject {
-    
-}
-
 class CharacterTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
     @IBOutlet weak var nameCharacterLabel: UILabel!
     @IBOutlet weak var photoCharacterImageView: UIImageView!
-    
-    // MARK: - Atributes
-    weak var delegate: CharacterTableViewCellDelegate?
     
     // MARK: - UITableViewCell methods
     override func awakeFromNib() {
