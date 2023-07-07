@@ -52,6 +52,7 @@ class CharacterListViewController : BaseViewController {
         characterTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         characterTableView.dataSource = self
         characterTableView.delegate = self
+        characterTableView.prefetchDataSource = self
         characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
         characterTableView.isScrollEnabled = true
         characterTableView.remembersLastFocusedIndexPath = false
@@ -152,10 +153,14 @@ extension CharacterListViewController: UITableViewDelegate {
     
 }
 
-// MARK: - CharacterTableViewCellDelegate
-extension CharacterListViewController: CharacterTableViewCellDelegate {
-    
+extension CharacterListViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        paginateTableView()
+    }
 }
+
+// MARK: - CharacterTableViewCellDelegate
+extension CharacterListViewController: CharacterTableViewCellDelegate {}
 
 // MARK: - UISearchBarDelegate
 extension CharacterListViewController: UISearchBarDelegate {
@@ -169,14 +174,16 @@ extension CharacterListViewController: UISearchBarDelegate {
 extension CharacterListViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pos = scrollView.contentOffset.y
-        if pos > characterTableView.contentSize.height-100 - scrollView.frame.size.height {
+        let scrollHeight = characterTableView.contentSize.height-50 - scrollView.frame.size.height
+        if pos > scrollHeight {
             paginateTableView()
+            scrollView.contentOffset.y = scrollHeight
         }
     }
 }
 
 // MARK: - CharacterProtocol
-extension CharacterListViewController: CharacterProtocol {
+extension CharacterListViewController: CharacterDelegaate {
     func populateTableView(characters: [Character]) {
         self.characters = characters
         self.characterTableView.reloadData()

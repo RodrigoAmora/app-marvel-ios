@@ -20,7 +20,7 @@
 		D24EEA2D2A4EC01400C3E236 /* CharacterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24EEA2C2A4EC01400C3E236 /* CharacterData.swift */; };
 		D25D1E3B2A539ABF003B9997 /* CharacterDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D1E3A2A539ABF003B9997 /* CharacterDao.swift */; };
 		D25D1E3D2A53AF5B003B9997 /* MarvelApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D1E3C2A53AF5B003B9997 /* MarvelApiKey.swift */; };
-		D2665F022A574595009F00F9 /* CharacterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2665F012A574595009F00F9 /* CharacterProtocol.swift */; };
+		D2665F022A574595009F00F9 /* CharacterDelegaate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2665F012A574595009F00F9 /* CharacterDelegaate.swift */; };
 		D271A3CC2A4DBF1000309F9B /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271A3CB2A4DBF1000309F9B /* Character.swift */; };
 		D271A3CE2A4DC0D900309F9B /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271A3CD2A4DC0D900309F9B /* CharacterViewController.swift */; };
 		D271A3D02A4DC10100309F9B /* CharacterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */; };
@@ -75,7 +75,7 @@
 		D24EEA2C2A4EC01400C3E236 /* CharacterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterData.swift; sourceTree = "<group>"; };
 		D25D1E3A2A539ABF003B9997 /* CharacterDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDao.swift; sourceTree = "<group>"; };
 		D25D1E3C2A53AF5B003B9997 /* MarvelApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApiKey.swift; sourceTree = "<group>"; };
-		D2665F012A574595009F00F9 /* CharacterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProtocol.swift; sourceTree = "<group>"; };
+		D2665F012A574595009F00F9 /* CharacterDelegaate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDelegaate.swift; sourceTree = "<group>"; };
 		D271A3CB2A4DBF1000309F9B /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		D271A3CD2A4DC0D900309F9B /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterViewController.xib; sourceTree = "<group>"; };
@@ -155,6 +155,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D21E54202A57C9F3008E702A /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				D2665F012A574595009F00F9 /* CharacterDelegaate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		D240F8AC2A56AAC000C65EB9 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,14 +225,6 @@
 			path = Dao;
 			sourceTree = "<group>";
 		};
-		D2665F002A57455E009F00F9 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				D2665F012A574595009F00F9 /* CharacterProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		D271A3C82A4DBE1C00309F9B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +282,7 @@
 		D2CAB70D2A481D1C001A9E21 /* Marvel App */ = {
 			isa = PBXGroup;
 			children = (
-				D2665F002A57455E009F00F9 /* Protocol */,
+				D21E54202A57C9F3008E702A /* Delegate */,
 				D24DF2522A4F008D00D99A81 /* AppDelegate */,
 				D2CAB71A2A481D1C001A9E21 /* Assets.xcassets */,
 				D271A3C82A4DBE1C00309F9B /* Controller */,
@@ -569,7 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2DDA1E42A527E5D0000D947 /* BaseViewController.swift in Sources */,
-				D2665F022A574595009F00F9 /* CharacterProtocol.swift in Sources */,
+				D2665F022A574595009F00F9 /* CharacterDelegaate.swift in Sources */,
 				D271A3CE2A4DC0D900309F9B /* CharacterViewController.swift in Sources */,
 				D2CAB7132A481D1C001A9E21 /* ViewController.swift in Sources */,
 				D240F8AE2A56AAD500C65EB9 /* UIExtension.swift in Sources */,

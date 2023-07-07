@@ -13,10 +13,10 @@ class CharacterViewModel {
     private lazy var characterDao: CharacterDao = CharacterDao()
     //private lazy var characterRepository: CharacterRepository = CharacterRepository()
     private lazy var characterService: CharacterService = CharacterService()
-    private var characterProtocol: CharacterProtocol
+    private var characterProtocol: CharacterDelegaate
     private var resource: Resource<[Character]?>?
     
-    init(characterProtocol: CharacterProtocol) {
+    init(characterProtocol: CharacterDelegaate) {
         self.characterProtocol = characterProtocol
     }
     
