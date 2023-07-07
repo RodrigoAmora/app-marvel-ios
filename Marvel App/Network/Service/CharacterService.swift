@@ -16,8 +16,8 @@ class CharacterService {
     private let md5Hash = MarvelApiKey.MD5_HASH
     
     // MARK: - Methods
-    func getCharacters(completion: @escaping(_ characterResponse: CharacterResponse, _ error: Int?) -> Void) {
-        let path = "characters?ts=1"+"&apikey="+apiKey+"&hash="+md5Hash
+    func getCharacters(offset: Int, completion: @escaping(_ characterResponse: CharacterResponse, _ error: Int?) -> Void) {
+        let path = "characters?ts=1&apikey=\(apiKey)&hash=\(md5Hash)&limit=20&offset=\(offset)&orderBy=name"
         
         AF.request(baseURL+path,
                            method: .get,
@@ -34,7 +34,7 @@ class CharacterService {
                                             completion(characterList, nil)
                                         } catch {
                                             print("Error retriving questions \(error)")
-                                            completion(CharacterResponse(), 0)
+                                            completion(CharacterResponse(), nil)
                                         }
                                         break
                                    

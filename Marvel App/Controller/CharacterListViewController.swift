@@ -17,9 +17,13 @@ class CharacterListViewController : BaseViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     
     // MARK: - Atributes
-    private var characterList: [Character] = []
-    private lazy var characterViewModel: CharacterViewModel = CharacterViewModel()
+    private var characters: [Character] = []
+    private lazy var characterViewModel: CharacterViewModel = CharacterViewModel(characterProtocol: self)
     private let fab = MDCFloatingButton(shape: .default)
+    private let refreshControl = UIRefreshControl()
+    
+    
+    private var offset = 0
     
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -49,6 +53,11 @@ class CharacterListViewController : BaseViewController {
         characterTableView.dataSource = self
         characterTableView.delegate = self
         characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
+        characterTableView.isScrollEnabled = true
+        characterTableView.remembersLastFocusedIndexPath = false
+        
+//        refreshControl.addTarget(self, action: #selector(paginateTableView), for: .valueChanged)
+//        characterTableView.refreshControl = refreshControl
     }
     
     private func configureNavBarAndSearchBar() {
@@ -62,20 +71,16 @@ class CharacterListViewController : BaseViewController {
     }
     
     private func getCharacters() {
-        characterViewModel.getCharacters(completion: { resource in
-            if resource.errorCode != nil && resource.errorCode ?? 0 > 0 {
-                self.showError(errorCode: resource.errorCode ?? 0)
-            }
-            
-            guard let list = resource.result else { return }
-            if (list?.count == 0) {
-                self.showError(errorCode: resource.errorCode ?? 0)
-            } else {
-                guard let list = resource.result else { return }
-                self.characterList = list ?? []
-                self.characterTableView.reloadData()
-            }
+        characterViewModel.getCharacters(offset: offset, completion: { resource in
+           
         })
+    }
+    
+    @objc private func paginateTableView() {
+//        currentPage += 1
+        offset += 20
+        getCharacters()
+        refreshControl.endRefreshing()
     }
     
     private func getCharactersByName(name: String) {
@@ -90,7 +95,7 @@ class CharacterListViewController : BaseViewController {
                 self?.showAlert(title: "", message: String(localized: "error_no_characters"))
             } else {
                 guard let list = resource.result else { return }
-                self?.characterList = list ?? []
+                self?.characters = list ?? []
                 self?.characterTableView.reloadData()
                 self?.searchBar.isHidden = true
             }
@@ -107,10 +112,10 @@ class CharacterListViewController : BaseViewController {
     
 }
 
+// MARK: - UITableViewDataSource
 extension CharacterListViewController: UITableViewDataSource {
-    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characterList.count
+        return characters.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -118,23 +123,27 @@ extension CharacterListViewController: UITableViewDataSource {
             fatalError("error creating CharacterTableViewCell")
         }
 
-        let character = characterList[indexPath.row]
+        let character = characters[indexPath.row]
         cell.configureCell(character)
         cell.delegate = self
         cell.layoutMargins = UIEdgeInsets.zero
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+    }
 }
 
+// MARK: - UITableViewDelegate
 extension CharacterListViewController: UITableViewDelegate {
-    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 205
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character: Character = characterList[indexPath.row]
+        let character: Character = characters[indexPath.row]
         let characterViewController = CharacterViewController.intanciate(character)
         characterViewController.modalPresentationStyle = .automatic
         
@@ -144,14 +153,37 @@ extension CharacterListViewController: UITableViewDelegate {
     
 }
 
+// MARK: - CharacterTableViewCellDelegate
 extension CharacterListViewController: CharacterTableViewCellDelegate {
     
 }
 
+// MARK: - UISearchBarDelegate
 extension CharacterListViewController: UISearchBarDelegate {
-    // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let nameCharacter = searchBar.text ?? ""
         getCharactersByName(name: nameCharacter)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension CharacterListViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pos = scrollView.contentOffset.y
+        if pos > characterTableView.contentSize.height-100 - scrollView.frame.size.height {
+            paginateTableView()
+        }
+    }
+}
+
+// MARK: - CharacterProtocol
+extension CharacterListViewController: CharacterProtocol {
+    func populateTableView(characters: [Character]) {
+        self.characters = characters
+        self.characterTableView.reloadData()
+    }
+    
+    func showError(_ errorCode: Int) {
+        self.showError(errorCode: errorCode)
     }
 }
