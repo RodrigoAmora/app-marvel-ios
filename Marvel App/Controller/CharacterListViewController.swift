@@ -79,22 +79,8 @@ class CharacterListViewController : BaseViewController {
     }
     
     private func getCharactersByName(name: String) {
-        let nameCharacter = searchBar.text ?? ""
-        characterViewModel.getCharactersByName(name: nameCharacter, completion: { [weak self] resource in
-            if resource.errorCode != nil && resource.errorCode ?? 0 > 0 {
-                self?.showError(errorCode: resource.errorCode ?? 0)
-            }
-            
-            guard let list = resource.result else { return }
-            if (list?.count == 0) {
-                self?.showAlert(title: "", message: String(localized: "error_no_characters"))
-            } else {
-                guard let list = resource.result else { return }
-                self?.characters = list ?? []
-                self?.characterTableView.reloadData()
-                self?.searchBar.isHidden = true
-            }
-        })
+        let nameCharacter = searchBar?.text?.replacingOccurrences(of: " ", with: "%20") ?? ""
+        characterViewModel.getCharactersByName(name: nameCharacter, completion: { [weak self] resource in})
     }
     
     @objc func showSearchView() {
@@ -104,7 +90,6 @@ class CharacterListViewController : BaseViewController {
             searchBar.isHidden = true
         }
     }
-    
 }
 
 // MARK: - UITableViewDataSource
@@ -143,7 +128,6 @@ extension CharacterListViewController: UITableViewDelegate {
         
         self.changeViewControllerWithPushViewController(characterViewController)
     }
-    
 }
 
 // MARK: - UITableViewDataSourcePrefetching
@@ -166,6 +150,7 @@ extension CharacterListViewController: CharacterDelegaate {
     func populateTableView(characters: [Character]) {
         self.characters = characters
         self.characterTableView.reloadData()
+        self.searchBar.isHidden = true
     }
     
     func showError(_ errorCode: Int) {

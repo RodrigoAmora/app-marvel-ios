@@ -25,15 +25,16 @@ class CharacterViewModel {
         resource = Resource(result: characterDao.recovery())
         
         characterService.getCharacters(offset: offset, completion: { [weak self] characterResponse, error in
-            //guard let charaters: [Character] = resource?.result else { return [] }
             let charaters: [Character] = characterResponse.data?.results ?? []
             
             if charaters.count == 0 {
                 self?.characterProtocol.showError(error ?? 0)
             } else {
-                self?.characterDao.save(charaters)
-                self?.resource?.result = charaters
-                self?.characterProtocol.populateTableView(characters: charaters)
+//                self?.characterDao.save(charaters)
+//                self?.resource?.result = charaters
+//                self?.characterProtocol.populateTableView(characters: charaters)
+                
+                self?.populateTableView(charaters: charaters)
             }
         })
         
@@ -45,12 +46,22 @@ class CharacterViewModel {
         return resource
     }
     
-    func getCharactersByName(name: String, completion: @escaping(_ characterResponse: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
-//        characterService.getCharactersByName(name: name, completion: { [weak self] resource in
-//            completion(resource)
-//        })
-        return resource
+    func getCharactersByName(name: String, completion: @escaping(_ characterResponse: Resource<[Character]?>) -> Void) {
+        characterService.getCharactersByName(name: name, completion: { [weak self] characterResponse, error in
+            let charaters: [Character] = characterResponse.data?.results ?? []
+            
+            if charaters.count == 0 {
+                self?.characterProtocol.showError(error ?? 0)
+            } else {
+                self?.populateTableView(charaters: charaters)
+            }
+        })
     }
     
+    private func populateTableView(charaters: [Character]) {
+        self.characterDao.save(charaters)
+        self.resource?.result = charaters
+        self.characterProtocol.populateTableView(characters: charaters)
+    }
 }
 
