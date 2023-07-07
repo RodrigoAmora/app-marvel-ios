@@ -19,7 +19,7 @@ class CharacterListViewController : BaseViewController {
     // MARK: - Atributes
     private var characters: [Character] = []
     private lazy var characterViewModel: CharacterViewModel = CharacterViewModel(characterProtocol: self)
-    private let fab = MDCFloatingButton(shape: .default)
+    private var fab: MDCFloatingButton!
     private let refreshControl = UIRefreshControl()
     
     
@@ -40,9 +40,9 @@ class CharacterListViewController : BaseViewController {
         let widwonWidth = UIScreen.main.bounds.width - 50 - 25
         let windowHeight = UIScreen.main.bounds.height - 50 - 25
         
-        fab.frame = CGRect(x: widwonWidth, y: windowHeight, width: 50, height: 50)
+        fab = MDCFloatingButton(frame: CGRect(x: widwonWidth, y: windowHeight, width: 50, height: 50))
         fab.backgroundColor = .blue
-        fab.setImage( UIImage(named: "ic_search"), for: .normal)
+        fab.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         fab.addTarget(self, action: #selector(showSearchView), for: .touchUpInside)
         
         self.view.addSubview(fab)
