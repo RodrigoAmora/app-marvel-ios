@@ -11,57 +11,75 @@ class CharacterViewModel {
     
     // MARK: - Atributes
     private lazy var characterDao: CharacterDao = CharacterDao()
-    //private lazy var characterRepository: CharacterRepository = CharacterRepository()
     private lazy var characterService: CharacterService = CharacterService()
-    private var characterProtocol: CharacterDelegaate
+    private var characterDelegate: CharacterDelegaate
     private var resource: Resource<[Character]?>?
     
-    init(characterProtocol: CharacterDelegaate) {
-        self.characterProtocol = characterProtocol
+    // MARK: - init
+    init(characterDelegate: CharacterDelegaate) {
+        self.characterDelegate = characterDelegate
     }
     
     // MARK: - Methods
-    func getCharacters(offset: Int, completion: @escaping(_ resource: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
+    func getCharacters(offset: Int) {
+        let charactersFomDatabase = characterDao.recovery()
+        
+        getCharacters(offset: offset, completion: { [weak self] resource in
+            guard let characters: [Character] = resource.result ?? [] else { return }
+
+            if characters.count == 0 {
+                self?.characterDelegate.showError(resource.errorCode ?? 0)
+            } else {
+                self?.characterDao.save(characters)
+                self?.characterDelegate.populateTableView(characters: characters)
+            }
+        })
+        
+        if !charactersFomDatabase.isEmpty {
+            //characterDelegate.populateTableView(characters: characters)
+        }
+    }
+    
+    
+    private func getCharacters(offset: Int, completion: @escaping(_ resource: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
         resource = Resource(result: characterDao.recovery())
         
         characterService.getCharacters(offset: offset, completion: { [weak self] characterResponse, error in
-            let charaters: [Character] = characterResponse.data?.results ?? []
-            
-            if charaters.count == 0 {
-                self?.characterProtocol.showError(error ?? 0)
+            let characters: [Character] = characterResponse.data?.results ?? []
+
+            if characters.count == 0 {
+                completion(Resource(result: nil, errorCode: error))
             } else {
-//                self?.characterDao.save(charaters)
-//                self?.resource?.result = charaters
-//                self?.characterProtocol.populateTableView(characters: charaters)
-                
-                self?.populateTableView(charaters: charaters)
+                completion(Resource(result: characters))
             }
         })
         
         return resource
     }
     
-    func getCharacters() -> Resource<[Character]?>? {
-        resource = Resource(result: characterDao.recovery())
-        return resource
-    }
-    
-    func getCharactersByName(name: String, completion: @escaping(_ characterResponse: Resource<[Character]?>) -> Void) {
-        characterService.getCharactersByName(name: name, completion: { [weak self] characterResponse, error in
-            let charaters: [Character] = characterResponse.data?.results ?? []
-            
-            if charaters.count == 0 {
-                self?.characterProtocol.showError(error ?? 0)
+    func getCharactersByName(_ name: String) {
+        getCharactersByName(name: name, completion: { [weak self] resource in
+            guard let characters: [Character] = resource.result ?? [] else { return }
+
+            if characters.count == 0 {
+                self?.characterDelegate.showError(resource.errorCode ?? 0)
             } else {
-                self?.populateTableView(charaters: charaters)
+                self?.characterDao.save(characters)
+                self?.characterDelegate.replaceAll(characters: characters)
             }
         })
     }
     
-    private func populateTableView(charaters: [Character]) {
-        self.characterDao.save(charaters)
-        self.resource?.result = charaters
-        self.characterProtocol.populateTableView(characters: charaters)
+    private func getCharactersByName(name: String, completion: @escaping(_ characterResponse: Resource<[Character]?>) -> Void) {
+        characterService.getCharactersByName(name: name, completion: { [weak self] characterResponse, error in
+            let characters: [Character] = characterResponse.data?.results ?? []
+            
+            if characters.count == 0 {
+                completion(Resource(result: nil, errorCode: error))
+            } else {
+                completion(Resource(result: characters))
+            }
+        })
     }
 }
 
