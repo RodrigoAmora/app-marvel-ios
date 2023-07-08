@@ -59,7 +59,7 @@ class CharacterService {
     }
     
     func getCharactersByName(name: String, completion: @escaping(_ characterResponse: CharacterResponse, _ error: Int?) -> Void) {
-        let path = "characters?ts=1&apikey=\(apiKey)&hash=\(md5Hash)&limit=20&nameStartsWith=\(name)&orderBy=name"
+        let path = "characters?ts=1&apikey=\(apiKey)&hash=\(md5Hash)&nameStartsWith=\(name)"
         
         AF.request(baseURL+path,
                            method: .get,
