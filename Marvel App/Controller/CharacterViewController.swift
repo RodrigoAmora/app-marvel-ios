@@ -48,10 +48,14 @@ class CharacterViewController: BaseViewController {
         imageCharaterImageView.loadImageFromURL(photoCharacterURL)
         
         nameCharaterLabel.textAlignment = .center
-        nameCharaterLabel.textColor = .black
+//        nameCharaterLabel.textColor = .black
         nameCharaterLabel.text = character?.name
         
-        descriptionCharaterLabel.textColor = .black
-        descriptionCharaterLabel.text = character?.characterDescription
+        if ((character?.description.isEmpty) != nil) {
+            descriptionCharaterLabel.text = String(localized: "character_no_description")
+        } else {
+            descriptionCharaterLabel.textColor = .black
+            descriptionCharaterLabel.text = character?.characterDescription
+        }
     }
 }
