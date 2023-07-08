@@ -9,5 +9,6 @@ import Foundation
 
 protocol CharacterDelegaate {
     func populateTableView(characters: [Character])
+    func replaceAll(characters: [Character])
     func showError(_ errorCode: Int)
 }
