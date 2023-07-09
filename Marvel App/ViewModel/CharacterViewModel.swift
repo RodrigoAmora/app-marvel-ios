@@ -23,6 +23,9 @@ class CharacterViewModel {
     // MARK: - Methods
     func getCharacters(offset: Int) {
         let charactersFomDatabase = characterDao.recovery()
+        if !charactersFomDatabase.isEmpty {
+            characterDelegate.populateTableView(characters: charactersFomDatabase)
+        }
         
         getCharacters(offset: offset, completion: { [weak self] resource in
             guard let characters: [Character] = resource.result ?? [] else { return }
@@ -34,10 +37,6 @@ class CharacterViewModel {
                 self?.characterDelegate.populateTableView(characters: characters)
             }
         })
-        
-        if !charactersFomDatabase.isEmpty {
-            //characterDelegate.populateTableView(characters: characters)
-        }
     }
     
     
