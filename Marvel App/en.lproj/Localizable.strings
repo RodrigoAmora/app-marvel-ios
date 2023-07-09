@@ -7,6 +7,8 @@
 */
 "app_name" = "Mavel App";
 
+"back" = "Back";
+
 // ERROR MESSAGES
 "error_access_denied" = "You don't have permission!";
 "error_cant_was_possible_perform_operation" = "Can't was possible perform operation.";

@@ -14,7 +14,6 @@ class CharacterViewController: BaseViewController {
     @IBOutlet weak var nameCharaterLabel: UILabel!
     @IBOutlet weak var descriptionCharaterLabel: UILabel!
     @IBOutlet weak var imageCharaterImageView: UIImageView!
-//    @IBOutlet weak var navBar: UINavigationBar!
     
     // MARK: - Atributes
     private var character: Character?
@@ -36,11 +35,11 @@ class CharacterViewController: BaseViewController {
     }
     
     private func configureNavigationBar() {
-//        navBar.topItem?.title = String(localized: "app_name")
-//        navBar.backgroundColor = UIColor.blue
-//
-//        navBar.backItem?.title = "cdnjjdbjdb"
-        navigationItem.backBarButtonItem?.title = "hghghgh"
+        self.navigationItem.title = String(localized: "app_name")
+        
+        self.navigationController?.navigationBar.backgroundColor = .blue
+        self.navigationController?.navigationBar.tintColor = .cyan
+        self.navigationController?.navigationBar.topItem?.title = String(localized: "back")
     }
     
     private func initView() {
