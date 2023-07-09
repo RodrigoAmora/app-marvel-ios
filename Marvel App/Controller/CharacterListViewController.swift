@@ -14,7 +14,6 @@ class CharacterListViewController : BaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var characterTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var navBar: UINavigationBar!
     
     // MARK: - Atributes
     private var characters: [Character] = []
@@ -61,8 +60,10 @@ class CharacterListViewController : BaseViewController {
     }
     
     private func configureNavBarAndSearchBar() {
-        navBar.topItem?.title = String(localized: "app_name")
-        navBar.backgroundColor = UIColor.blue
+        self.navigationItem.title = String(localized: "app_name")
+        
+        self.navigationController?.navigationBar.backgroundColor = .blue
+        self.navigationController?.navigationBar.tintColor = .cyan
         
         searchBar.delegate = self
         searchBar.showsLargeContentViewer = true
@@ -130,6 +131,8 @@ extension CharacterListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        characterTableView.deselectRow(at: indexPath, animated: true)
+        
         let character: Character = characters[indexPath.row]
         let characterViewController = CharacterViewController.intanciate(character)
         characterViewController.modalPresentationStyle = .automatic
