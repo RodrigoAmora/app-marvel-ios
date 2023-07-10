@@ -8,6 +8,7 @@
 "app_name" = "Mavel App";
 
 "back" = "Back";
+"view_details"= "View details";
 
 // ERROR MESSAGES
 "error_access_denied" = "You don't have permission!";

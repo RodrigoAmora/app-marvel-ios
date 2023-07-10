@@ -75,14 +75,21 @@ class CharacterListViewController : BaseViewController {
         characterViewModel.getCharacters(offset: offset)
     }
     
+    private func getCharactersByName(_ name: String) {
+        characterViewModel.getCharactersByName(name)
+    }
+    
+    private func viewDetailsOfCharacter(_ character: Character) {
+        let characterViewController = CharacterViewController.intanciate(character)
+        characterViewController.modalPresentationStyle = .automatic
+        
+        self.changeViewControllerWithPushViewController(characterViewController)
+    }
+    
     @objc private func paginateTableView() {
         offset += 20
         getCharacters()
         //refreshControl.endRefreshing()
-    }
-    
-    private func getCharactersByName(_ name: String) {
-        characterViewModel.getCharactersByName(name)
     }
     
     @objc func showSearchView() {
@@ -112,14 +119,21 @@ extension CharacterListViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let favouriteaction = UIContextualAction(style: .normal, title: String(localized: "view_details")) {
+            [weak self] (action, view, completionHandler) in
+            guard let character: Character = self?.characters[indexPath.row] else { return }
+            self?.viewDetailsOfCharacter(character)
+            completionHandler(true)
+        }
+        favouriteaction.backgroundColor = .systemGreen
+        
+        return UISwipeActionsConfiguration(actions: [favouriteaction])
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == characters.count-1, characters.count > 20 {
             paginateTableView()
-            
-//            if indexPath.row > 20 {
-//                let targetRonIdexPath = IndexPath(row: indexPath.row-5, section: 0)
-//                characterTableView.scrollToRow(at: targetRonIdexPath, at: .middle, animated: false)
-//            }
         }
     }
 }
@@ -134,10 +148,7 @@ extension CharacterListViewController: UITableViewDelegate {
         characterTableView.deselectRow(at: indexPath, animated: true)
         
         let character: Character = characters[indexPath.row]
-        let characterViewController = CharacterViewController.intanciate(character)
-        characterViewController.modalPresentationStyle = .automatic
-        
-        self.changeViewControllerWithPushViewController(characterViewController)
+        self.viewDetailsOfCharacter(character)
     }
 }
 

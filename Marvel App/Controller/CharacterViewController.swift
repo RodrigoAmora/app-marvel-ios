@@ -31,7 +31,7 @@ class CharacterViewController: BaseViewController {
         super.viewDidLoad()
         print("CharacterViewController")
         self.configureNavigationBar()
-        self.initView()
+        self.initViews()
     }
     
     private func configureNavigationBar() {
@@ -42,12 +42,11 @@ class CharacterViewController: BaseViewController {
         self.navigationController?.navigationBar.topItem?.title = String(localized: "back")
     }
     
-    private func initView() {
+    private func initViews() {
         let photoCharacterURL = (character?.thumbnail?.path ?? "")+"."+(character?.thumbnail?.extensionPhoto ?? "")
         imageCharaterImageView.loadImageFromURL(photoCharacterURL)
         
         nameCharaterLabel.textAlignment = .center
-//        nameCharaterLabel.textColor = .black
         nameCharaterLabel.text = character?.name
         
         if ((character?.description.isEmpty) != nil) {
