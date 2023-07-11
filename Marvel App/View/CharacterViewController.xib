@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterViewController" customModule="Marvel_App" customModuleProvider="target">
             <connections>
+                <outlet property="comicsLabel" destination="H8i-Gv-fYk" id="Ec7-dy-ekH"/>
+                <outlet property="comicsickerView" destination="ftt-N5-NqN" id="nEH-Mn-Rdd"/>
                 <outlet property="descriptionCharaterLabel" destination="Czi-gK-zof" id="knU-U6-nGe"/>
                 <outlet property="imageCharaterImageView" destination="IGE-eF-3NG" id="nIR-ba-J8H"/>
                 <outlet property="nameCharaterLabel" destination="pqP-Q5-C3m" id="Tzc-wO-OrG"/>
@@ -40,6 +42,17 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8i-Gv-fYk">
+                    <rect key="frame" x="16" y="366" width="351" height="21"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftt-N5-NqN">
+                    <rect key="frame" x="0.0" y="395" width="393" height="124"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                </pickerView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
