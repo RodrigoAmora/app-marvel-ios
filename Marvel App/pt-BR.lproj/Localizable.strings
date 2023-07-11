@@ -19,3 +19,6 @@
 // CHACRACTERS
 "search_character_by_name" = "Buscar personagem pelo nome....";
 "character_no_description" = "Este personagem não possui descrição...";
+
+// COMICS
+"comics" = "HQs";
