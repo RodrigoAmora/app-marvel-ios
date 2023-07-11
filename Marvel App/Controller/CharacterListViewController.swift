@@ -126,7 +126,7 @@ extension CharacterListViewController: UITableViewDataSource {
             self?.viewDetailsOfCharacter(character)
             completionHandler(true)
         }
-        favouriteaction.backgroundColor = .systemGreen
+        favouriteaction.backgroundColor = .systemGray
         
         return UISwipeActionsConfiguration(actions: [favouriteaction])
     }
