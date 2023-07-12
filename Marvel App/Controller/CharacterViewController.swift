@@ -15,7 +15,7 @@ class CharacterViewController: BaseViewController {
     @IBOutlet weak var descriptionCharaterLabel: UILabel!
     @IBOutlet weak var imageCharaterImageView: UIImageView!
     @IBOutlet weak var comicsLabel: UILabel!
-    @IBOutlet weak var comicsickerView: UIPickerView!
+    @IBOutlet weak var comicsPickerView: UIPickerView!
     
     // MARK: - Atributes
     private var character: Character!
@@ -49,7 +49,7 @@ class CharacterViewController: BaseViewController {
     }
     
     private func initViews() {
-        let photoCharacterURL = "\(character.thumbnail?.path).\(character.thumbnail?.extensionPhoto)"
+        let photoCharacterURL = (character.thumbnail?.path)!+"."+(character.thumbnail?.extensionPhoto)!
         imageCharaterImageView.loadImageFromURL(photoCharacterURL)
         
         nameCharaterLabel.textAlignment = .center
@@ -62,7 +62,12 @@ class CharacterViewController: BaseViewController {
             descriptionCharaterLabel.text = String(localized: "character_no_description")
         } else {
             descriptionCharaterLabel.text = character.characterDescription
+            descriptionCharaterLabel.numberOfLines = 10
+//            descriptionCharaterLabel.autoresizingMask = .flexibleHeight
         }
+        
+        comicsPickerView.delegate = self as UIPickerViewDelegate
+        comicsPickerView.dataSource = self as UIPickerViewDataSource
     }
     
     private func getComicsByCharacterId() {
@@ -73,11 +78,17 @@ class CharacterViewController: BaseViewController {
 // MARK: - UIPickerViewDelegate
 extension CharacterViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.comics.count
+        return self.titles.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.titles[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let comic = comics[row-1]
+        let comicViewController = ComicViewController.intanciate(comic)
+        changeViewControllerWithPushViewController(comicViewController)
     }
 }
 
@@ -92,10 +103,11 @@ extension CharacterViewController: UIPickerViewDataSource {
 extension CharacterViewController: ComicDelegate {
     func update(comics: [Comic]) {
         self.comics = comics
+        self.titles.append("")
         for comic in self.comics {
             self.titles.append(comic.title)
         }
-        comicsickerView.reloadAllComponents()
+        comicsPickerView.reloadAllComponents()
     }
     
     func replaceAll(comics: [Comic]) {}
