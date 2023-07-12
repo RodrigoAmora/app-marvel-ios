@@ -14,8 +14,6 @@ class ComicViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageComicImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var comicLabel: UILabel!
-    @IBOutlet weak var pickerComics: UIPickerView!
     
     // MARK: - Atributes
     private var comic: Comic?
@@ -31,6 +29,7 @@ class ComicViewController: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         self.configureNavigationBar()
+        self.initViews()
     }
     
     private func configureNavigationBar() {
@@ -42,13 +41,13 @@ class ComicViewController: UIViewController {
     }
     
     private func initViews() {
-        let photoComicURL = "\(comic?.thumbnail?.path).\(comic?.thumbnail?.extensionPhoto)"
+        let photoComicURL = (comic?.thumbnail?.path)!+"."+(comic?.thumbnail?.extensionPhoto)!
         imageComicImageView.loadImageFromURL(photoComicURL)
         
         titleLabel.textAlignment = .center
         titleLabel.text = comic?.title
         
-        if ((comic?.description.isEmpty) != nil) {
+        if (comic!.description.isEmpty) {
             descriptionLabel.text = String(localized: "character_no_description")
         } else {
             descriptionLabel.textColor = .black

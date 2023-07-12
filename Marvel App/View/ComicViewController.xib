@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComicViewController" customModule="Marvel_App" customModuleProvider="target">
             <connections>
+                <outlet property="descriptionLabel" destination="JdK-9K-1oS" id="aXo-Fm-FpD"/>
+                <outlet property="imageComicImageView" destination="3kc-FB-D4Y" id="VjH-AR-5Ux"/>
+                <outlet property="titleLabel" destination="glb-Df-doa" id="Ehh-2e-QzB"/>
                 <outlet property="view" destination="iN0-l3-epB" id="S2y-Tp-Oob"/>
             </connections>
         </placeholder>
