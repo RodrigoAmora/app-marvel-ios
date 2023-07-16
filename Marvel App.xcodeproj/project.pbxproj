@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		081D9D59CE6D0228A0104A13 /* Pods_Marvel_App_Marvel_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D046FEE9A682CA459459172 /* Pods_Marvel_App_Marvel_AppUITests.framework */; };
 		57973020AB80B57775BF90A8 /* Pods_Marvel_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F7476021A61E530898784E /* Pods_Marvel_App.framework */; };
+		D233F3C42A6397A300BFAB91 /* CharacterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233F3C32A6397A300BFAB91 /* CharacterUITests.swift */; };
 		D240F8AE2A56AAD500C65EB9 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240F8AD2A56AAD500C65EB9 /* UIExtension.swift */; };
 		D24DF2542A4F00FC00D99A81 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24DF2532A4F00FC00D99A81 /* Thumbnail.swift */; };
 		D24EEA1C2A4EB06300C3E236 /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24EEA1B2A4EB06300C3E236 /* CharacterListViewController.swift */; };
@@ -74,6 +75,7 @@
 		5878146985CDFD312D708177 /* Pods-Marvel App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel App.release.xcconfig"; path = "Target Support Files/Pods-Marvel App/Pods-Marvel App.release.xcconfig"; sourceTree = "<group>"; };
 		730BB93DDE8268E5E1ABE388 /* Pods-Marvel AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel AppTests.release.xcconfig"; path = "Target Support Files/Pods-Marvel AppTests/Pods-Marvel AppTests.release.xcconfig"; sourceTree = "<group>"; };
 		BFCBCD2C25FEFD1FF258A666 /* Pods_Marvel_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D233F3C32A6397A300BFAB91 /* CharacterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterUITests.swift; sourceTree = "<group>"; };
 		D240F8AD2A56AAD500C65EB9 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		D24DF2532A4F00FC00D99A81 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		D24EEA1B2A4EB06300C3E236 /* CharacterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewController.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			children = (
 				D2CAB7322A481D1D001A9E21 /* Marvel_AppUITests.swift */,
 				D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */,
+				D233F3C32A6397A300BFAB91 /* CharacterUITests.swift */,
 			);
 			path = "Marvel AppUITests";
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D233F3C42A6397A300BFAB91 /* CharacterUITests.swift in Sources */,
 				D2CAB7332A481D1D001A9E21 /* Marvel_AppUITests.swift in Sources */,
 				D2CAB7352A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift in Sources */,
 			);
