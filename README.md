@@ -8,5 +8,7 @@ O App usa as seguintes dependências:
 * Alamofire
 * MaterialComponents/Buttons
 * ObjectMapper
+* Sheeeeeeeeet
+* XCTest
 
 <hr>
