@@ -58,12 +58,11 @@ class CharacterViewController: BaseViewController {
         comicsLabel.backgroundColor = .gray
         comicsLabel.text = String(localized: "comics")
         
-        if character.description.isEmpty {
+        if character.characterDescription.isEmpty {
             descriptionCharaterLabel.text = String(localized: "character_no_description")
         } else {
             descriptionCharaterLabel.text = character.characterDescription
             descriptionCharaterLabel.numberOfLines = 10
-//            descriptionCharaterLabel.autoresizingMask = .flexibleHeight
         }
         
         comicsPickerView.delegate = self as UIPickerViewDelegate
