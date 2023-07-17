@@ -41,13 +41,19 @@ class ComicViewController: UIViewController {
     }
     
     private func initViews() {
-        let photoComicURL = (comic?.thumbnail?.path)!+"."+(comic?.thumbnail?.extensionPhoto)!
+        let path = comic?.thumbnail?.path ?? ""
+        let extensionPhoto = comic?.thumbnail?.extensionPhoto ?? ""
+        
+        let photoComicURL = "\(path).\(extensionPhoto)"
         imageComicImageView.loadImageFromURL(photoComicURL)
         
         titleLabel.textAlignment = .center
         titleLabel.text = comic?.title
         
-        if (comic!.description.isEmpty) {
+        descriptionLabel.textAlignment = .center
+        
+        guard let comicDescription = comic?.comicDescription else { return }
+        if comicDescription.isEmpty {
             descriptionLabel.text = String(localized: "character_no_description")
         } else {
             descriptionLabel.textColor = .black
