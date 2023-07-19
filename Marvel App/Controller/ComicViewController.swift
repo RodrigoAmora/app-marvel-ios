@@ -32,6 +32,7 @@ class ComicViewController: UIViewController {
         self.initViews()
     }
     
+    // MARK: - Methods
     private func configureNavigationBar() {
         self.navigationItem.title = String(localized: "app_name")
         
@@ -41,9 +42,6 @@ class ComicViewController: UIViewController {
     }
     
     private func initViews() {
-        let path = comic?.thumbnail?.path ?? ""
-        let extensionPhoto = comic?.thumbnail?.extensionPhoto ?? ""
-        
         guard let photoComicURL = comic?.thumbnail?.formatURL() else { return }
         imageComicImageView.loadImageFromURL(photoComicURL)
         
