@@ -33,7 +33,7 @@ class CharacterTableViewCell: UITableViewCell {
     func configureCell(_ character: Character?) {
         nameCharacterLabel.text = character?.name
         
-        let photoCharacterURL = (character?.thumbnail?.path ?? "")+"."+(character?.thumbnail?.extensionPhoto ?? "")
+        guard let photoCharacterURL = character?.thumbnail?.formatURL() else { return }
         photoCharacterImageView.loadImageFromURL(photoCharacterURL)
     }
     

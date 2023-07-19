@@ -13,6 +13,12 @@ class Thumbnail: NSObject, NSCoding, Decodable {
     var extensionPhoto: String
     var path: String
     
+    // MARK: - Init
+    init(path: String, extensionPhoto: String) {
+        self.path = path
+        self.extensionPhoto = extensionPhoto
+    }
+    
     // MARK: - NSCoding
     func encode(with coder: NSCoder) {
         coder.encode(extensionPhoto, forKey: "extensionPhoto")
@@ -28,6 +34,10 @@ class Thumbnail: NSObject, NSCoding, Decodable {
     enum CodingKeys: String, CodingKey {
         case extensionPhoto = "extension"
         case path
+    }
+    
+    func formatURL() -> String {
+        return "\(path).\(extensionPhoto)"
     }
     
 }

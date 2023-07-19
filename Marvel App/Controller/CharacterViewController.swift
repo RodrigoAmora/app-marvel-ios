@@ -49,7 +49,7 @@ class CharacterViewController: BaseViewController {
     }
     
     private func initViews() {
-        let photoCharacterURL = (character.thumbnail?.path)!+"."+(character.thumbnail?.extensionPhoto)!
+        guard let photoCharacterURL = character?.thumbnail?.formatURL() else { return }
         imageCharaterImageView.loadImageFromURL(photoCharacterURL)
         
         nameCharaterLabel.textAlignment = .center

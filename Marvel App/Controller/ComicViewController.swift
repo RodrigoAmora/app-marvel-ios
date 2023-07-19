@@ -44,7 +44,7 @@ class ComicViewController: UIViewController {
         let path = comic?.thumbnail?.path ?? ""
         let extensionPhoto = comic?.thumbnail?.extensionPhoto ?? ""
         
-        let photoComicURL = "\(path).\(extensionPhoto)"
+        guard let photoComicURL = comic?.thumbnail?.formatURL() else { return }
         imageComicImageView.loadImageFromURL(photoComicURL)
         
         titleLabel.textAlignment = .center
