@@ -70,7 +70,7 @@ class CharacterViewController: BaseViewController {
     }
     
     private func getComicsByCharacterId() {
-        comicViewModel.getComicsByCharacterId(character.id)
+        comicViewModel.getComicsByCharacterId(Int(Int64(character.id)))
     }
 }
 
