@@ -10,7 +10,6 @@ import Foundation
 class ComicViewModel {
     
     // MARK: - Atributes
-    private lazy var characterDao: CharacterDao = CharacterDao()
     private lazy var characterService: CharacterService = CharacterService()
     private var comicDelegate: ComicDelegate
     private var resource: Resource<[Comic]?>?
@@ -24,12 +23,6 @@ class ComicViewModel {
         getComicsByCharacterId(characterId, completion: { [weak self] resource in
             guard let comics: [Comic] = resource.result ?? [] else { return }
             self?.comicDelegate.update(comics: comics)
-            
-//            if comics.count == 0 {
-//                self?.comicDelegate.showError(resource.errorCode ?? 0)
-//            } else {
-//                self?.comicDelegate.update(comics: comics)
-//            }
         })
     }
     
