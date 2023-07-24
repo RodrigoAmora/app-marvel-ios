@@ -7,9 +7,14 @@
 
 import Foundation
 
-class CharacterData: NSObject, Decodable {
+class CharacterResponseData: Decodable {
     // MARK: - Atributes
     var total: Int = 0
     var results: [Character] = []
     
+    // MARK: - CodingKeys
+    enum CodingKeys: String, CodingKey {
+        case total
+        case results = "results"
+    }
 }

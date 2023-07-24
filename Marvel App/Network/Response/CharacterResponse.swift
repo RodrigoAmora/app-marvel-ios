@@ -8,17 +8,15 @@
 import Foundation
 //import ObjectMapper
 
-struct CharacterResponse: Decodable {
+class CharacterResponse: Decodable {
     // MARK: - Atributes
-    var code: Int = 0
-    var data: CharacterData?
-    var status: String = ""
+    var data: CharacterResponseData?
     
     // MARK: - CodingKeys
     enum CodingKeys: String, CodingKey {
-        case code
+        
         case data = "data"
-        case status
+        
     }
     
 }
