@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import MaterialComponents.MaterialButtons
+import CoreData
 
 class CharacterListViewController : BaseViewController {
     
@@ -22,6 +23,8 @@ class CharacterListViewController : BaseViewController {
     private let refreshControl = UIRefreshControl()
     private var offset = 0
     
+    let searcher: NSFetchedResultsController<Character> = Character.getSearcher()
+    
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +32,15 @@ class CharacterListViewController : BaseViewController {
         self.configureNavBarAndSearchBar()
         self.configureFloatingButton()
         self.configureTableView()
-        self.getCharacters()
     }
  
+    override func viewDidAppear(_ animated: Bool) {
+        Character.load(searcher)
+        characters = searcher.fetchedObjects!
+        characterTableView.reloadData()
+        self.getCharacters()
+    }
+    
     // MARK: - Methods
     private func configureFloatingButton() {
         let widwonWidth = UIScreen.main.bounds.width - 50 - 25
@@ -89,7 +98,7 @@ class CharacterListViewController : BaseViewController {
     @objc private func paginateTableView() {
         offset += 20
         getCharacters()
-        //refreshControl.endRefreshing()
+        refreshControl.endRefreshing()
     }
     
     @objc func showSearchView() {
@@ -132,7 +141,7 @@ extension CharacterListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == characters.count-1, characters.count > 20 {
+        if indexPath.row == characters.count-1, characters.count >= 20 {
             paginateTableView()
         }
     }

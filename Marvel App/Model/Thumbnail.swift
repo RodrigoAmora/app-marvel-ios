@@ -6,38 +6,48 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
-class Thumbnail: NSObject, NSCoding, Decodable {
+@objc(Thumbnail)
+class Thumbnail: NSManagedObject, Decodable {
     
     // MARK: - Atributes
-    var extensionPhoto: String
-    var path: String
+    @NSManaged var extensionPhoto: String
+    @NSManaged var path: String
     
-    // MARK: - Init
-    init(path: String, extensionPhoto: String) {
+    /// MARK: - Init
+    convenience init(path: String, extensionPhoto: String) {
+        let contexto = UIApplication.shared.delegate as! AppDelegate
+        self.init(context: contexto.persistentContainer.viewContext)
         self.path = path
         self.extensionPhoto = extensionPhoto
     }
     
-    // MARK: - NSCoding
-    func encode(with coder: NSCoder) {
-        coder.encode(extensionPhoto, forKey: "extensionPhoto")
-        coder.encode(path, forKey: "path")
+    required convenience init(from decoder: Decoder) throws {
+        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+        self.init(context: managedContext)
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.path = try container.decode(String.self, forKey: .path)
+            self.extensionPhoto = try container.decode(String.self, forKey: .extensionPhoto)
+        } catch {
+            print("Error retriving questions \(error)")
+        }
     }
-    
-    required init?(coder: NSCoder) {
-        extensionPhoto = coder.decodeObject(forKey: "extensionPhoto") as! String
-        path = coder.decodeObject(forKey: "path") as! String
-    }
-    
     // MARK: - CodingKeys
     enum CodingKeys: String, CodingKey {
         case extensionPhoto = "extension"
-        case path
+        case path = "path"
     }
     
     func formatURL() -> String {
         return "\(path).\(extensionPhoto)"
     }
     
+    enum ManagedObjectError: Error {
+        case decodeContextError
+        case decodeEntityError
+    }
 }
