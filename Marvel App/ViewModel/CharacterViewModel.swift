@@ -13,11 +13,11 @@ class CharacterViewModel {
     
     // MARK: - Atributes
     private lazy var characterService: CharacterService = CharacterService()
-    private var characterDelegate: CharacterDelegaate
+    private var characterDelegate: CharacterDelegate
     private var resource: Resource<[Character]?>?
     
     // MARK: - init
-    init(characterDelegate: CharacterDelegaate) {
+    init(characterDelegate: CharacterDelegate) {
         self.characterDelegate = characterDelegate
     }
     

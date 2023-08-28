@@ -170,7 +170,7 @@ extension CharacterListViewController: UISearchBarDelegate {
 }
 
 // MARK: - CharacterDelegaate
-extension CharacterListViewController: CharacterDelegaate {
+extension CharacterListViewController: CharacterDelegate {
     func populateTableView(characters: [Character]) {
         self.characters = characters
         self.characterTableView.reloadData()
