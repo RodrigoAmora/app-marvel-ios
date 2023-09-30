@@ -27,9 +27,10 @@ class CharacterService {
                             case .success(let json):
                                 switch response.response?.statusCode {
                                     case 200:
-                                        guard let data = response.data else { return }
                                         do {
-                                            let characters = try JSONDecoder().decode(CharacterResponse.self, from: data)
+                                            guard let data = response.data else { return }
+                                            
+                                            let characters: CharacterResponse = try JSONDecoder().decode(CharacterResponse.self, from: data)
                                             completion(characters, nil)
                                         } catch {
                                             print("Error retriving questions \(error)")
