@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import MaterialComponents.MaterialButtons
 import CoreData
+import AVFoundation
 
 class CharacterListViewController : BaseViewController {
     
@@ -22,6 +23,7 @@ class CharacterListViewController : BaseViewController {
     private var fab: MDCFloatingButton!
     private let refreshControl = UIRefreshControl()
     private var offset = 0
+    private var player: AVAudioPlayer?
     
     let searcher: NSFetchedResultsController<Character> = Character.getSearcher()
     
@@ -63,7 +65,7 @@ class CharacterListViewController : BaseViewController {
         characterTableView.remembersLastFocusedIndexPath = true
         
         
-        refreshControl.addTarget(self, action: #selector(paginateTableView), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         characterTableView.refreshControl = refreshControl
         refreshControl.endRefreshing()
     }
@@ -93,6 +95,23 @@ class CharacterListViewController : BaseViewController {
         characterViewController.modalPresentationStyle = .automatic
         
         self.changeViewControllerWithPushViewController(characterViewController)
+    }
+    
+    private func playSound() {
+        let url = Bundle.main.url(forResource: "swipe_sound", withExtension: "mp3")!
+        do {
+            self.player = try AVAudioPlayer(contentsOf: url)
+            self.player?.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    @objc private func refreshTableView() {
+        self.offset = 0
+        self.playSound()
+        self.getCharacters()
+        self.refreshControl.endRefreshing()
     }
     
     @objc private func paginateTableView() {
