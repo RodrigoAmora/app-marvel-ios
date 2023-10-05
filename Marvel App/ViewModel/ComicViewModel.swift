@@ -19,15 +19,16 @@ class ComicViewModel {
         self.comicDelegate = comicDelegate
     }
     
+    // MARK: - Methods
     func getComicsByCharacterId(_ characterId: Int) {
-        getComicsByCharacterId(characterId, completion: { [weak self] resource in
+        self.getComicsByCharacterId(characterId, completion: { [weak self] resource in
             guard let comics: [Comic] = resource.result ?? [] else { return }
             self?.comicDelegate.update(comics: comics)
         })
     }
     
     private func getComicsByCharacterId(_ characterId: Int, completion: @escaping(_ comicResponse: Resource<[Comic]?>) -> Void) {
-        characterService.getComicsByCharacterId(characterId, completion: { [weak self] comicResponse, error in
+        self.characterService.getComicsByCharacterId(characterId, completion: { [weak self] comicResponse, error in
             let comics: [Comic] = comicResponse.data?.results ?? []
             
             if comics.count == 0 {

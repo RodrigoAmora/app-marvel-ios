@@ -50,23 +50,23 @@ class CharacterViewController: BaseViewController {
     
     private func initViews() {
         guard let photoCharacterURL = character?.thumbnail?.formatURL() else { return }
-        imageCharaterImageView.loadImageFromURL(photoCharacterURL)
+        self.imageCharaterImageView.loadImageFromURL(photoCharacterURL)
         
-        nameCharaterLabel.textAlignment = .center
-        nameCharaterLabel.text = character.name
+        self.nameCharaterLabel.textAlignment = .center
+        self.nameCharaterLabel.text = self.character.name
         
-        comicsLabel.backgroundColor = .gray
-        comicsLabel.text = String(localized: "comics")
+        self.comicsLabel.backgroundColor = .gray
+        self.comicsLabel.text = String(localized: "comics")
         
-        if character.characterDescription.isEmpty {
-            descriptionCharaterLabel.text = String(localized: "character_no_description")
+        if self.character.characterDescription.isEmpty {
+            self.descriptionCharaterLabel.text = String(localized: "character_no_description")
         } else {
-            descriptionCharaterLabel.text = character.characterDescription
-            descriptionCharaterLabel.numberOfLines = 10
+            self.descriptionCharaterLabel.text = self.character.characterDescription
+            self.descriptionCharaterLabel.numberOfLines = 10
         }
         
-        comicsPickerView.delegate = self as UIPickerViewDelegate
-        comicsPickerView.dataSource = self as UIPickerViewDataSource
+        self.comicsPickerView.delegate = self as UIPickerViewDelegate
+        self.comicsPickerView.dataSource = self as UIPickerViewDataSource
     }
     
     private func getComicsByCharacterId() {
@@ -103,10 +103,12 @@ extension CharacterViewController: ComicDelegate {
     func update(comics: [Comic]) {
         self.comics = comics
         self.titles.append("")
+        
         for comic in self.comics {
             self.titles.append(comic.title)
         }
-        comicsPickerView.reloadAllComponents()
+        
+        self.comicsPickerView.reloadAllComponents()
     }
     
     func replaceAll(comics: [Comic]) {}
