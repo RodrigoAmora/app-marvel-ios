@@ -27,6 +27,7 @@
 		D271A3D02A4DC10100309F9B /* CharacterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */; };
 		D274F2F32A5E706A0016584A /* ComicsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D274F2F22A5E706A0016584A /* ComicsListViewController.swift */; };
 		D274F2F52A5E708F0016584A /* ComicsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D274F2F42A5E708F0016584A /* ComicsListViewController.xib */; };
+		D2AEF9F62ACE55D100219E71 /* swipe_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2AEF9F52ACE55D100219E71 /* swipe_sound.mp3 */; };
 		D2B377652A5CC294004057F0 /* ComicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B377642A5CC294004057F0 /* ComicViewController.swift */; };
 		D2B377672A5CC2C1004057F0 /* ComicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B377662A5CC2C1004057F0 /* ComicViewController.xib */; };
 		D2B3776A2A5CC663004057F0 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B377692A5CC663004057F0 /* Comic.swift */; };
@@ -92,6 +93,7 @@
 		D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterViewController.xib; sourceTree = "<group>"; };
 		D274F2F22A5E706A0016584A /* ComicsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsListViewController.swift; sourceTree = "<group>"; };
 		D274F2F42A5E708F0016584A /* ComicsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsListViewController.xib; sourceTree = "<group>"; };
+		D2AEF9F52ACE55D100219E71 /* swipe_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swipe_sound.mp3; sourceTree = "<group>"; };
 		D2B377642A5CC294004057F0 /* ComicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicViewController.swift; sourceTree = "<group>"; };
 		D2B377662A5CC2C1004057F0 /* ComicViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicViewController.xib; sourceTree = "<group>"; };
 		D2B377692A5CC663004057F0 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
@@ -285,6 +287,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D2AEF9F42ACE558D00219E71 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D2AEF9F52ACE55D100219E71 /* swipe_sound.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		D2CAB7022A481D1C001A9E21 = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +320,7 @@
 		D2CAB70D2A481D1C001A9E21 /* Marvel App */ = {
 			isa = PBXGroup;
 			children = (
+				D2AEF9F42ACE558D00219E71 /* Sounds */,
 				D2395BCB2A6C551400DD2FF1 /* CoreData */,
 				D24DF2522A4F008D00D99A81 /* AppDelegate */,
 				D2CAB71A2A481D1C001A9E21 /* Assets.xcassets */,
@@ -471,6 +482,7 @@
 				D2CAB71E2A481D1C001A9E21 /* LaunchScreen.storyboard in Resources */,
 				D2DDA1DF2A52782F0000D947 /* Localizable.strings in Resources */,
 				D24EEA232A4EB13F00C3E236 /* CharacterTableViewCell.xib in Resources */,
+				D2AEF9F62ACE55D100219E71 /* swipe_sound.mp3 in Resources */,
 				D2CAB71B2A481D1C001A9E21 /* Assets.xcassets in Resources */,
 				D2CAB7162A481D1C001A9E21 /* Main.storyboard in Resources */,
 			);
