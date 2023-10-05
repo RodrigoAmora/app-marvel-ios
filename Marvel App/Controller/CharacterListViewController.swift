@@ -38,8 +38,8 @@ class CharacterListViewController : BaseViewController {
  
     override func viewDidAppear(_ animated: Bool) {
         Character.load(searcher)
-        characters = searcher.fetchedObjects!
-        characterTableView.reloadData()
+        self.characters = searcher.fetchedObjects!
+        self.characterTableView.reloadData()
         self.getCharacters()
     }
     
@@ -48,26 +48,26 @@ class CharacterListViewController : BaseViewController {
         let widwonWidth = UIScreen.main.bounds.width - 50 - 25
         let windowHeight = UIScreen.main.bounds.height - 50 - 25
         
-        fab = MDCFloatingButton(frame: CGRect(x: widwonWidth, y: windowHeight, width: 50, height: 50))
-        fab.backgroundColor = .blue
-        fab.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        fab.addTarget(self, action: #selector(showSearchView), for: .touchUpInside)
+        self.fab = MDCFloatingButton(frame: CGRect(x: widwonWidth, y: windowHeight, width: 50, height: 50))
+        self.fab.backgroundColor = .blue
+        self.fab.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        self.fab.addTarget(self, action: #selector(showSearchView), for: .touchUpInside)
         
-        self.view.addSubview(fab)
+        self.view.addSubview(self.fab)
     }
     
     private func configureTableView() {
-        characterTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        characterTableView.dataSource = self
-        characterTableView.delegate = self
-        characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
-        characterTableView.isScrollEnabled = true
-        characterTableView.remembersLastFocusedIndexPath = true
+        self.characterTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.characterTableView.dataSource = self
+        self.characterTableView.delegate = self
+        self.characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
+        self.characterTableView.isScrollEnabled = true
+        self.characterTableView.remembersLastFocusedIndexPath = true
         
         
-        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
-        characterTableView.refreshControl = refreshControl
-        refreshControl.endRefreshing()
+        self.refreshControl.addTarget(self, action: #selector(self.refreshTableView), for: .valueChanged)
+        self.characterTableView.refreshControl = self.refreshControl
+        self.refreshControl.endRefreshing()
     }
     
     private func configureNavBarAndSearchBar() {
@@ -76,18 +76,18 @@ class CharacterListViewController : BaseViewController {
         self.navigationController?.navigationBar.backgroundColor = .blue
         self.navigationController?.navigationBar.tintColor = .cyan
         
-        searchBar.delegate = self
-        searchBar.showsLargeContentViewer = true
-        searchBar.isHidden = true
-        searchBar.placeholder = String(localized: "search_character_by_name")
+        self.searchBar.delegate = self
+        self.searchBar.showsLargeContentViewer = true
+        self.searchBar.isHidden = true
+        self.searchBar.placeholder = String(localized: "search_character_by_name")
     }
     
     private func getCharacters() {
-        characterViewModel.getCharacters(offset: offset)
+        self.characterViewModel.getCharacters(offset: offset)
     }
     
     private func getCharactersByName(_ name: String) {
-        characterViewModel.getCharactersByName(name)
+        self.characterViewModel.getCharactersByName(name)
     }
     
     private func viewDetailsOfCharacter(_ character: Character) {
@@ -115,16 +115,16 @@ class CharacterListViewController : BaseViewController {
     }
     
     @objc private func paginateTableView() {
-        offset += 20
-        getCharacters()
-        refreshControl.endRefreshing()
+        self.offset += 20
+        self.getCharacters()
+        self.refreshControl.endRefreshing()
     }
     
     @objc func showSearchView() {
-        if searchBar.isHidden {
-            searchBar.isHidden = false
+        if self.searchBar.isHidden {
+            self.searchBar.isHidden = false
         } else {
-            searchBar.isHidden = true
+            self.searchBar.isHidden = true
         }
     }
 }
@@ -132,7 +132,7 @@ class CharacterListViewController : BaseViewController {
 // MARK: - UITableViewDataSource
 extension CharacterListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count
+        return self.characters.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -140,7 +140,7 @@ extension CharacterListViewController: UITableViewDataSource {
             fatalError("error creating CharacterTableViewCell")
         }
 
-        let character = characters[indexPath.row]
+        let character = self.characters[indexPath.row]
         cell.configureCell(character)
         cell.layoutMargins = UIEdgeInsets.zero
         
@@ -160,8 +160,8 @@ extension CharacterListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == characters.count-1, characters.count >= 20 {
-            paginateTableView()
+        if indexPath.row == self.characters.count-1, self.characters.count >= 20 {
+            self.paginateTableView()
         }
     }
 }
@@ -173,9 +173,9 @@ extension CharacterListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        characterTableView.deselectRow(at: indexPath, animated: true)
+        self.characterTableView.deselectRow(at: indexPath, animated: true)
         
-        let character: Character = characters[indexPath.row]
+        let character: Character = self.characters[indexPath.row]
         self.viewDetailsOfCharacter(character)
     }
 }
@@ -184,7 +184,7 @@ extension CharacterListViewController: UITableViewDelegate {
 extension CharacterListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let nameCharacter = searchBar.text?.replacingOccurrences(of: " ", with: "%20") ?? ""
-        getCharactersByName(nameCharacter)
+        self.getCharactersByName(nameCharacter)
     }
 }
 
@@ -196,7 +196,7 @@ extension CharacterListViewController: CharacterDelegate {
         
         if offset != 0 {
             let targetRonIdexPath = IndexPath(row: self.characters.count-5, section: 0)
-            characterTableView.scrollToRow(at: targetRonIdexPath, at: .middle, animated: false)
+            self.characterTableView.scrollToRow(at: targetRonIdexPath, at: .middle, animated: false)
         }
     }
     
@@ -208,7 +208,7 @@ extension CharacterListViewController: CharacterDelegate {
         
         if characters.count > 10 {
             let targetRonIdexPath = IndexPath(row: 0, section: 0)
-            characterTableView.scrollToRow(at: targetRonIdexPath, at: .top, animated: false)
+            self.characterTableView.scrollToRow(at: targetRonIdexPath, at: .top, animated: false)
         }
     }
     
