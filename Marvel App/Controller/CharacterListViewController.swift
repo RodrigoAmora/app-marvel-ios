@@ -14,6 +14,7 @@ import AVFoundation
 class CharacterListViewController : BaseViewController {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var characterTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -83,10 +84,12 @@ class CharacterListViewController : BaseViewController {
     }
     
     private func getCharacters() {
+        self.activityIndicatorView.configureActivityIndicatorView()
         self.characterViewModel.getCharacters(offset: offset)
     }
     
     private func getCharactersByName(_ name: String) {
+        self.activityIndicatorView.configureActivityIndicatorView()
         self.characterViewModel.getCharactersByName(name)
     }
     
@@ -191,6 +194,8 @@ extension CharacterListViewController: UISearchBarDelegate {
 // MARK: - CharacterDelegaate
 extension CharacterListViewController: CharacterDelegate {
     func populateTableView(characters: [Character]) {
+        self.activityIndicatorView.hideActivityIndicatorView()
+        
         self.characters = characters
         self.characterTableView.reloadData()
         
@@ -201,6 +206,8 @@ extension CharacterListViewController: CharacterDelegate {
     }
     
     func replaceAll(characters: [Character]) {
+        self.activityIndicatorView.hideActivityIndicatorView()
+        
         self.characters.removeAll()
         self.characters = characters
         self.characterTableView.reloadData()
@@ -213,6 +220,7 @@ extension CharacterListViewController: CharacterDelegate {
     }
     
     func showError(_ errorCode: Int) {
+        self.activityIndicatorView.hideActivityIndicatorView()
         self.showError(errorCode: errorCode)
     }
 }
