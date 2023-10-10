@@ -8,6 +8,19 @@
 import Foundation
 import UIKit
 
+extension UIActivityIndicatorView {
+    func configureActivityIndicatorView() {
+        self.backgroundColor = .gray
+        self.layer.cornerRadius = CGRectGetWidth(self.frame)/4.0
+        self.color = .blue
+        self.isHidden = false
+    }
+    
+    func hideActivityIndicatorView() {
+        self.isHidden = true
+    }
+}
+
 extension UIImageView {
     func loadImageFromURL(_ url: String) {
         guard let imageURL = URL(string: url) else { return }
