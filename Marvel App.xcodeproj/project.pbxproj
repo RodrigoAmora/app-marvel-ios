@@ -320,17 +320,17 @@
 		D2CAB70D2A481D1C001A9E21 /* Marvel App */ = {
 			isa = PBXGroup;
 			children = (
-				D2AEF9F42ACE558D00219E71 /* Sounds */,
-				D2395BCB2A6C551400DD2FF1 /* CoreData */,
 				D24DF2522A4F008D00D99A81 /* AppDelegate */,
 				D2CAB71A2A481D1C001A9E21 /* Assets.xcassets */,
 				D271A3C82A4DBE1C00309F9B /* Controller */,
+				D2395BCB2A6C551400DD2FF1 /* CoreData */,
 				D21E54202A57C9F3008E702A /* Delegate */,
 				D240F8AC2A56AAC000C65EB9 /* Extension */,
 				D2CAB71F2A481D1C001A9E21 /* Info.plist */,
 				D2DDA1E12A52782F0000D947 /* Localizable.strings */,
 				D271A3CA2A4DBED000309F9B /* Model */,
 				D24EEA272A4EBF7200C3E236 /* Network */,
+				D2AEF9F42ACE558D00219E71 /* Sounds */,
 				D271A3C92A4DBEC100309F9B /* View */,
 				D2DDA1E52A5296E50000D947 /* ViewModel */,
 			);
@@ -340,8 +340,8 @@
 		D2CAB7272A481D1D001A9E21 /* Marvel AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				D2CAB7282A481D1D001A9E21 /* Marvel_AppTests.swift */,
 				D26E826E2A687AB60038D5DD /* CharacterTest.swift */,
+				D2CAB7282A481D1D001A9E21 /* Marvel_AppTests.swift */,
 			);
 			path = "Marvel AppTests";
 			sourceTree = "<group>";
@@ -349,9 +349,9 @@
 		D2CAB7312A481D1D001A9E21 /* Marvel AppUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D233F3C32A6397A300BFAB91 /* CharacterUITests.swift */,
 				D2CAB7322A481D1D001A9E21 /* Marvel_AppUITests.swift */,
 				D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */,
-				D233F3C32A6397A300BFAB91 /* CharacterUITests.swift */,
 			);
 			path = "Marvel AppUITests";
 			sourceTree = "<group>";
