@@ -37,6 +37,7 @@ class CharacterViewController: BaseViewController {
         print("CharacterViewController")
         self.configureNavigationBar()
         self.initViews()
+        self.configureDelegates()
         self.getComicsByCharacterId()
     }
     
@@ -54,9 +55,11 @@ class CharacterViewController: BaseViewController {
         
         self.nameCharaterLabel.textAlignment = .center
         self.nameCharaterLabel.text = self.character.name
+        self.nameCharaterLabel.overrideUserInterfaceStyle = .unspecified
         
         self.comicsLabel.backgroundColor = .gray
         self.comicsLabel.text = String(localized: "comics")
+        self.comicsLabel.overrideUserInterfaceStyle = .unspecified
         
         if self.character.characterDescription.isEmpty {
             self.descriptionCharaterLabel.text = String(localized: "character_no_description")
@@ -64,7 +67,10 @@ class CharacterViewController: BaseViewController {
             self.descriptionCharaterLabel.text = self.character.characterDescription
             self.descriptionCharaterLabel.numberOfLines = 10
         }
-        
+        self.comicsLabel.overrideUserInterfaceStyle = .unspecified
+    }
+    
+    private func configureDelegates() {
         self.comicsPickerView.delegate = self as UIPickerViewDelegate
         self.comicsPickerView.dataSource = self as UIPickerViewDataSource
     }
