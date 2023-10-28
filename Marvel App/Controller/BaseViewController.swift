@@ -18,6 +18,15 @@ class BaseViewController: UIViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    func getVersionApp() -> String? {
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        return appVersion
+    }
+    
+    func hideKeyboard() {
+        self.view.endEditing(true)
+    }
+    
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
