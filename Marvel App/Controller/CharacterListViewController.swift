@@ -186,6 +186,7 @@ extension CharacterListViewController: UITableViewDelegate {
 // MARK: - UISearchBarDelegate
 extension CharacterListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.hideKeyboard()
         let nameCharacter = searchBar.text?.replacingOccurrences(of: " ", with: "%20") ?? ""
         self.getCharactersByName(nameCharacter)
     }
