@@ -67,7 +67,10 @@ class CharacterViewController: BaseViewController {
             self.descriptionCharaterLabel.text = self.character.characterDescription
             self.descriptionCharaterLabel.numberOfLines = 10
         }
-        self.comicsLabel.overrideUserInterfaceStyle = .unspecified
+        
+        self.descriptionCharaterLabel.overrideUserInterfaceStyle = .unspecified
+        
+        self.comicsPickerView.overrideUserInterfaceStyle = .unspecified
     }
     
     private func configureDelegates() {
