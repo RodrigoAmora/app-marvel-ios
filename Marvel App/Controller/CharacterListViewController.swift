@@ -35,6 +35,7 @@ class CharacterListViewController : BaseViewController {
         self.configureNavBarAndSearchBar()
         self.configureFloatingButton()
         self.configureTableView()
+        self.configureDelegate()
     }
  
     override func viewDidAppear(_ animated: Bool) {
@@ -59,8 +60,6 @@ class CharacterListViewController : BaseViewController {
     
     private func configureTableView() {
         self.characterTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.characterTableView.dataSource = self
-        self.characterTableView.delegate = self
         self.characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
         self.characterTableView.isScrollEnabled = true
         self.characterTableView.remembersLastFocusedIndexPath = true
@@ -71,13 +70,19 @@ class CharacterListViewController : BaseViewController {
         self.refreshControl.endRefreshing()
     }
     
+    private func configureDelegate() {
+        self.characterTableView.dataSource = self
+        self.characterTableView.delegate = self
+        
+        self.searchBar.delegate = self
+    }
+    
     private func configureNavBarAndSearchBar() {
         self.navigationItem.title = String(localized: "app_name")
         
         self.navigationController?.navigationBar.backgroundColor = .blue
         self.navigationController?.navigationBar.tintColor = .cyan
         
-        self.searchBar.delegate = self
         self.searchBar.showsLargeContentViewer = true
         self.searchBar.isHidden = true
         self.searchBar.placeholder = String(localized: "search_character_by_name")
