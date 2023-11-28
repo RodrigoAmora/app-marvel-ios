@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import ObjectMapper
 
 class CharacterResponse: Decodable {
     // MARK: - Atributes
