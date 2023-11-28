@@ -12,7 +12,7 @@ import UIKit
 class CharacterViewModel {
     
     // MARK: - Atributes
-    private lazy var characterService: CharacterService = CharacterService()
+    private lazy var characterRepository = CharacterRepository()
     private var characterDelegate: CharacterDelegate
     private var resource: Resource<[Character]?>?
     
@@ -23,7 +23,7 @@ class CharacterViewModel {
     
     // MARK: - Methods
     func getCharacters(offset: Int) {
-        getCharacters(offset: offset, completion: { [weak self] resource in
+        self.characterRepository.getCharacters(offset: offset, completion: { [weak self] resource in
             guard let characters: [Character] = resource.result ?? [] else { return }
 
             if characters.count == 0 {
@@ -39,25 +39,8 @@ class CharacterViewModel {
         })
     }
     
-    
-    private func getCharacters(offset: Int, completion: @escaping(_ resource: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
-        resource = Resource(result: [Character]())
-        
-        characterService.getCharacters(offset: offset, completion: { [weak self] characterResponse, error in
-            let characters: [Character] = characterResponse.data?.results ?? []
-
-            if characters.count == 0 {
-                completion(Resource(result: nil, errorCode: error))
-            } else {
-                completion(Resource(result: characters))
-            }
-        })
-        
-        return resource
-    }
-    
     func getCharactersByName(_ name: String) {
-        getCharactersByName(name: name, completion: { [weak self] resource in
+        self.characterRepository.getCharactersByName(name: name, completion: { [weak self] resource in
             guard let characters: [Character] = resource.result ?? [] else { return }
 
             if characters.count == 0 {
@@ -67,17 +50,4 @@ class CharacterViewModel {
             }
         })
     }
-    
-    private func getCharactersByName(name: String, completion: @escaping(_ characterResponse: Resource<[Character]?>) -> Void) {
-        characterService.getCharactersByName(name: name, completion: { [weak self] characterResponse, error in
-            let characters: [Character] = characterResponse.data?.results ?? []
-            
-            if characters.count == 0 {
-                completion(Resource(result: nil, errorCode: error))
-            } else {
-                completion(Resource(result: characters))
-            }
-        })
-    }
 }
-
