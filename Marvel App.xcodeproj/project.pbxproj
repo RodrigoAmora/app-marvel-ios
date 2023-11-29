@@ -194,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				D23306882B16B2C5008482B8 /* CharacterRepository.swift */,
+				D26FE7A32B16D2AA00C546B1 /* ComicRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -236,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				D24EEA252A4EB5B900C3E236 /* CharacterService.swift */,
-				D26FE7A32B16D2AA00C546B1 /* ComicRepository.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
