@@ -10,7 +10,7 @@ import Foundation
 class ComicViewModel {
     
     // MARK: - Atributes
-    private lazy var characterService: CharacterService = CharacterService()
+    private lazy var comicRepository = ComicRepository()
     private var comicDelegate: ComicDelegate
     private var resource: Resource<[Comic]?>?
     
@@ -21,21 +21,9 @@ class ComicViewModel {
     
     // MARK: - Methods
     func getComicsByCharacterId(_ characterId: Int) {
-        self.getComicsByCharacterId(characterId, completion: { [weak self] resource in
+        self.comicRepository.getComicsByCharacterId(characterId, completion: { [weak self] resource in
             guard let comics: [Comic] = resource.result ?? [] else { return }
             self?.comicDelegate.update(comics: comics)
-        })
-    }
-    
-    private func getComicsByCharacterId(_ characterId: Int, completion: @escaping(_ comicResponse: Resource<[Comic]?>) -> Void) {
-        self.characterService.getComicsByCharacterId(characterId, completion: { [weak self] comicResponse, error in
-            let comics: [Comic] = comicResponse.data?.results ?? []
-            
-            if comics.count == 0 {
-                completion(Resource(result: nil, errorCode: error))
-            } else {
-                completion(Resource(result: comics))
-            }
         })
     }
 }

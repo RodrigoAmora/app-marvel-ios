@@ -23,6 +23,7 @@
 		D25D1E3D2A53AF5B003B9997 /* MarvelApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D1E3C2A53AF5B003B9997 /* MarvelApiKey.swift */; };
 		D2665F022A574595009F00F9 /* CharacterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2665F012A574595009F00F9 /* CharacterDelegate.swift */; };
 		D26E826F2A687AB60038D5DD /* CharacterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26E826E2A687AB60038D5DD /* CharacterTest.swift */; };
+		D26FE7A42B16D2AA00C546B1 /* ComicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26FE7A32B16D2AA00C546B1 /* ComicRepository.swift */; };
 		D271A3CC2A4DBF1000309F9B /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271A3CB2A4DBF1000309F9B /* Character.swift */; };
 		D271A3CE2A4DC0D900309F9B /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271A3CD2A4DC0D900309F9B /* CharacterViewController.swift */; };
 		D271A3D02A4DC10100309F9B /* CharacterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */; };
@@ -90,6 +91,7 @@
 		D25D1E3C2A53AF5B003B9997 /* MarvelApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApiKey.swift; sourceTree = "<group>"; };
 		D2665F012A574595009F00F9 /* CharacterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDelegate.swift; sourceTree = "<group>"; };
 		D26E826E2A687AB60038D5DD /* CharacterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTest.swift; sourceTree = "<group>"; };
+		D26FE7A32B16D2AA00C546B1 /* ComicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicRepository.swift; sourceTree = "<group>"; };
 		D271A3CB2A4DBF1000309F9B /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		D271A3CD2A4DC0D900309F9B /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterViewController.xib; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				D24EEA252A4EB5B900C3E236 /* CharacterService.swift */,
+				D26FE7A32B16D2AA00C546B1 /* ComicRepository.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				D2CAB7132A481D1C001A9E21 /* ViewController.swift in Sources */,
 				D240F8AE2A56AAD500C65EB9 /* UIExtension.swift in Sources */,
 				D2DDA1E92A52985C0000D947 /* Resource.swift in Sources */,
+				D26FE7A42B16D2AA00C546B1 /* ComicRepository.swift in Sources */,
 				D23306892B16B2C5008482B8 /* CharacterRepository.swift in Sources */,
 				D2B377722A5CCF73004057F0 /* ComicViewModel.swift in Sources */,
 				D2B3776A2A5CC663004057F0 /* Comic.swift in Sources */,
