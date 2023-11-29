@@ -18,7 +18,8 @@
 
 // CHACRACTERS
 "search_character_by_name" = "Search character by name....";
-"character_no_description" = "Tis character don't have descrption...";
+"character_no_description" = "This character don't have descrption...";
 
 // COMICS
 "comics" = "Comics";
+"comic_no_description" = "This comic don't have descrption...";

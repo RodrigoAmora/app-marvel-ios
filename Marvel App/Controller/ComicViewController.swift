@@ -42,20 +42,20 @@ class ComicViewController: UIViewController {
     }
     
     private func initViews() {
-        guard let photoComicURL = comic?.thumbnail?.formatURL() else { return }
-        imageComicImageView.loadImageFromURL(photoComicURL)
+        guard let photoComicURL = self.comic?.thumbnail?.formatURL() else { return }
+        self.imageComicImageView.loadImageFromURL(photoComicURL)
         
-        titleLabel.textAlignment = .center
-        titleLabel.text = comic?.title
+        self.titleLabel.textAlignment = .center
+        self.titleLabel.text = self.comic?.title
         
-        descriptionLabel.textAlignment = .center
+        self.descriptionLabel.textAlignment = .center
+        self.descriptionLabel.textColor = .black
         
-        guard let comicDescription = comic?.comicDescription else { return }
+        guard let comicDescription = self.comic?.comicDescription else { return }
         if comicDescription.isEmpty {
-            descriptionLabel.text = String(localized: "character_no_description")
+            self.descriptionLabel.text = String(localized: "comic_no_description")
         } else {
-            descriptionLabel.textColor = .black
-            descriptionLabel.text = comic?.comicDescription
+            self.descriptionLabel.text = self.comic?.comicDescription
         }
     }
 }
