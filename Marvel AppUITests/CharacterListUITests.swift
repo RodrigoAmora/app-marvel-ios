@@ -1,5 +1,5 @@
 //
-//  CharacterUITests.swift
+//  CharacterListUITests.swift
 //  Marvel AppUITests
 //
 //  Created by Rodrigo Amora on 16/07/23.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class CharacterUITests: XCTestCase {
+final class CharacterListUITests: XCTestCase {
     
     // MARK: - Atributes
     var app: XCUIApplication!
