@@ -16,11 +16,12 @@ class CharacterTableViewCell: UITableViewCell {
     // MARK: - UITableViewCell methods
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        nameCharacterLabel.textAlignment = .center
         
-        photoCharacterImageView.layer.cornerRadius = photoCharacterImageView.frame.size.width / 2
-        photoCharacterImageView.clipsToBounds = true
+        self.nameCharacterLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
+        self.nameCharacterLabel.textAlignment = .center
+        
+        self.photoCharacterImageView.layer.cornerRadius = photoCharacterImageView.frame.size.width / 2
+        self.photoCharacterImageView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,10 +32,10 @@ class CharacterTableViewCell: UITableViewCell {
     
     // MARK: - Class methods
     func configureCell(_ character: Character?) {
-        nameCharacterLabel.text = character?.name
+        self.nameCharacterLabel.text = character?.name
         
         guard let photoCharacterURL = character?.thumbnail?.formatURL() else { return }
-        photoCharacterImageView.loadImageFromURL(photoCharacterURL)
+        self.photoCharacterImageView.loadImageFromURL(photoCharacterURL)
     }
     
 }
