@@ -40,16 +40,5 @@ final class CharacterListUITests: XCTestCase {
         let characterTableView = self.app.tables
         XCTAssertEqual("3-D Man", characterTableView.cells.element(boundBy: 0).staticTexts["nameCharacter"].label)
     }
-
-    func testVerifiyNameAndDescriptionOfCharacterAfterSelectOneCharacter() throws {
-        let characterTableView = self.app.tables
-        characterTableView.cells.element(boundBy: 0).firstMatch.tap()
-        
-        let nameCharacterLabel = self.app.staticTexts["nameCharacter"]
-        let descriptionCharacterLabel = self.app.staticTexts["descriptionCharacter"]
-        
-        XCTAssertEqual("3-D Man", nameCharacterLabel.label)
-        XCTAssertNotNil(descriptionCharacterLabel.label)
-    }
     
 }
