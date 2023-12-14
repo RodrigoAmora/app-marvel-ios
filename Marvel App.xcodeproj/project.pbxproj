@@ -29,6 +29,7 @@
 		D271A3D02A4DC10100309F9B /* CharacterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */; };
 		D274F2F32A5E706A0016584A /* ComicsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D274F2F22A5E706A0016584A /* ComicsListViewController.swift */; };
 		D274F2F52A5E708F0016584A /* ComicsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D274F2F42A5E708F0016584A /* ComicsListViewController.xib */; };
+		D28C402D2B2AC86B00C03464 /* CharacterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28C402C2B2AC86B00C03464 /* CharacterUITests.swift */; };
 		D2A8D3882B2598D2001C6ADD /* ComicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D3872B2598D2001C6ADD /* ComicUITests.swift */; };
 		D2AEF9F62ACE55D100219E71 /* swipe_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2AEF9F52ACE55D100219E71 /* swipe_sound.mp3 */; };
 		D2B377652A5CC294004057F0 /* ComicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B377642A5CC294004057F0 /* ComicViewController.swift */; };
@@ -98,6 +99,7 @@
 		D271A3CF2A4DC10100309F9B /* CharacterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterViewController.xib; sourceTree = "<group>"; };
 		D274F2F22A5E706A0016584A /* ComicsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsListViewController.swift; sourceTree = "<group>"; };
 		D274F2F42A5E708F0016584A /* ComicsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsListViewController.xib; sourceTree = "<group>"; };
+		D28C402C2B2AC86B00C03464 /* CharacterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterUITests.swift; sourceTree = "<group>"; };
 		D2A8D3872B2598D2001C6ADD /* ComicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicUITests.swift; sourceTree = "<group>"; };
 		D2AEF9F52ACE55D100219E71 /* swipe_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swipe_sound.mp3; sourceTree = "<group>"; };
 		D2B377642A5CC294004057F0 /* ComicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicViewController.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				D233F3C32A6397A300BFAB91 /* CharacterListUITests.swift */,
+				D28C402C2B2AC86B00C03464 /* CharacterUITests.swift */,
 				D2A8D3872B2598D2001C6ADD /* ComicUITests.swift */,
 				D2CAB7322A481D1D001A9E21 /* Marvel_AppUITests.swift */,
 				D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */,
@@ -672,6 +675,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28C402D2B2AC86B00C03464 /* CharacterUITests.swift in Sources */,
 				D233F3C42A6397A300BFAB91 /* CharacterListUITests.swift in Sources */,
 				D2A8D3882B2598D2001C6ADD /* ComicUITests.swift in Sources */,
 				D2CAB7332A481D1D001A9E21 /* Marvel_AppUITests.swift in Sources */,
