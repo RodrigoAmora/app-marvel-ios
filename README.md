@@ -4,7 +4,10 @@ O App roda a partir do iOS 15.0
 
 <hr>
 
+Dependências:
+-------------
 O App usa as seguintes dependências:
+
 * Alamofire
 * MaterialComponents/Buttons
 * ObjectMapper
