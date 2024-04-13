@@ -17,9 +17,9 @@ class CharacterService {
     
     // MARK: - Methods
     func getCharacters(offset: Int, completion: @escaping(_ characterResponse: CharacterResponse, _ error: Int?) -> Void) {
-        let path = "characters?ts=1&apikey=\(apiKey)&hash=\(md5Hash)&limit=20&offset=\(offset)&orderBy=name"
+        let charactersURL = "\(self.baseURL)characters?ts=1&apikey=\(self.apiKey)&hash=\(self.md5Hash)&limit=20&offset=\(offset)&orderBy=name"
         
-        AF.request(baseURL+path,
+        AF.request(charactersURL,
                            method: .get,
                            encoding: URLEncoding.default)
                     .responseJSON{ response in
@@ -59,9 +59,9 @@ class CharacterService {
     }
     
     func getCharactersByName(name: String, completion: @escaping(_ characterResponse: CharacterResponse, _ error: Int?) -> Void) {
-        let path = "characters?ts=1&apikey=\(apiKey)&hash=\(md5Hash)&nameStartsWith=\(name)"
+        let charactersURL = "\(self.baseURL)characters?ts=1&apikey=\(self.apiKey)&hash=\(self.md5Hash)&nameStartsWith=\(name)"
         
-        AF.request(baseURL+path,
+        AF.request(charactersURL,
                            method: .get,
                            encoding: URLEncoding.default)
                     .responseJSON{ response in
@@ -123,4 +123,5 @@ class CharacterService {
                         }
                     }
     }
+    
 }
