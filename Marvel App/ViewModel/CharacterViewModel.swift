@@ -32,7 +32,7 @@ class CharacterViewModel {
                 let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
                 for character in characters {
                     print(character.name)
-                    character.save(managedContext)
+                    CharacterDao.save(character)
                 }
                 self?.characterDelegate.populateTableView(characters: characters)
             }

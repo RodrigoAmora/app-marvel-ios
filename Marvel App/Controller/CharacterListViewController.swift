@@ -26,12 +26,9 @@ class CharacterListViewController : BaseViewController {
     private var offset = 0
     private var player: AVAudioPlayer?
     
-    let searcher: NSFetchedResultsController<Character> = Character.getSearcher()
-    
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("CharacterListViewController")
         self.configureNavBarAndSearchBar()
         self.configureFloatingButton()
         self.configureTableView()
@@ -39,8 +36,8 @@ class CharacterListViewController : BaseViewController {
     }
  
     override func viewDidAppear(_ animated: Bool) {
-        Character.load(searcher)
-        self.characters = searcher.fetchedObjects!
+        //Character.load(searcher)
+        self.characters = CharacterDao.findCharacters().fetchedObjects ?? [] //searcher.fetchedObjects!
         self.characterTableView.reloadData()
         self.getCharacters()
     }
@@ -54,16 +51,17 @@ class CharacterListViewController : BaseViewController {
         self.fab.backgroundColor = .blue
         self.fab.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         self.fab.addTarget(self, action: #selector(showSearchView), for: .touchUpInside)
+        self.fab.accessibilityIdentifier = "fabSearchBar"
         
         self.view.addSubview(self.fab)
     }
     
     private func configureTableView() {
+        self.characterTableView.accessibilityIdentifier = "characterTableView"
         self.characterTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.characterTableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterTableViewCell")
         self.characterTableView.isScrollEnabled = true
         self.characterTableView.remembersLastFocusedIndexPath = true
-        
         
         self.refreshControl.addTarget(self, action: #selector(self.refreshTableView), for: .valueChanged)
         self.characterTableView.refreshControl = self.refreshControl
@@ -83,6 +81,7 @@ class CharacterListViewController : BaseViewController {
         self.navigationController?.navigationBar.backgroundColor = .blue
         self.navigationController?.navigationBar.tintColor = .cyan
         
+        self.searchBar.accessibilityIdentifier = "characterByNameSearchBar"
         self.searchBar.showsLargeContentViewer = true
         self.searchBar.isHidden = true
         self.searchBar.placeholder = String(localized: "search_character_by_name")
