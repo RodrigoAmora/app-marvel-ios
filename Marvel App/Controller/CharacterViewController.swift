@@ -65,8 +65,11 @@ class CharacterViewController: BaseViewController {
             self.descriptionCharaterLabel.text = String(localized: "character_no_description")
         } else {
             self.descriptionCharaterLabel.text = self.character.characterDescription
-            self.descriptionCharaterLabel.numberOfLines = 10
         }
+        
+        self.descriptionCharaterLabel.numberOfLines = 0
+        self.descriptionCharaterLabel.lineBreakMode = .byWordWrapping
+        self.descriptionCharaterLabel.sizeToFit()
         
         self.descriptionCharaterLabel.overrideUserInterfaceStyle = .unspecified
         
@@ -79,7 +82,7 @@ class CharacterViewController: BaseViewController {
     }
     
     private func getComicsByCharacterId() {
-        comicViewModel.getComicsByCharacterId(Int(Int64(character.id)))
+        self.comicViewModel.getComicsByCharacterId(Int(Int64(character.id)))
     }
 }
 
@@ -96,7 +99,7 @@ extension CharacterViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let comic = comics[row-1]
         let comicViewController = ComicViewController.intanciate(comic)
-        changeViewControllerWithPushViewController(comicViewController)
+        self.changeViewControllerWithPushViewController(comicViewController)
     }
 }
 
