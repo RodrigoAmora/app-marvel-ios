@@ -49,41 +49,5 @@ class Character: NSManagedObject, Decodable {
         case name = "name"
         case thumbnail = "thumbnail"
     }
-    
-    // MARK: - Core Data - DAO
-    class func fetchRequest() -> NSFetchRequest<Character> {
-        return NSFetchRequest(entityName: "Character")
-    }
-    
-    func save(_ context: NSManagedObjectContext) {
-        do {
-            try context.save()
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    class func load(_ fetchedResultController: NSFetchedResultsController<Character>) {
-        do {
-            try fetchedResultController.performFetch()
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    class func getSearcher() -> NSFetchedResultsController<Character> {
-        let searcher: NSFetchedResultsController<Character> = {
-                var fetchRequest: NSFetchRequest<Character> = Character.fetchRequest()
-                let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-                fetchRequest.sortDescriptors = [sortDescriptor]
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                return NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                  managedObjectContext: appDelegate.persistentContainer.viewContext,
-                                                  sectionNameKeyPath: nil,
-                                                  cacheName: nil)
-            }()
-
-        return searcher
-    }
+   
 }
