@@ -270,7 +270,7 @@
 		D24EEA272A4EBF7200C3E236 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				D25D1E3C2A53AF5B003B9997 /* MarvelApiKey.swift */,
+				D2CB18772BFEF85F00EAB60D /* ApiKey */,
 				D2DDA1E82A52985C0000D947 /* Resource.swift */,
 				D24EEA292A4EBF9F00C3E236 /* Response */,
 				D24EEA242A4EB5A200C3E236 /* Service */,
@@ -396,6 +396,14 @@
 				D2CAB7342A481D1D001A9E21 /* Marvel_AppUITestsLaunchTests.swift */,
 			);
 			path = "Marvel AppUITests";
+			sourceTree = "<group>";
+		};
+		D2CB18772BFEF85F00EAB60D /* ApiKey */ = {
+			isa = PBXGroup;
+			children = (
+				D25D1E3C2A53AF5B003B9997 /* MarvelApiKey.swift */,
+			);
+			path = ApiKey;
 			sourceTree = "<group>";
 		};
 		D2DDA1E52A5296E50000D947 /* ViewModel */ = {
