@@ -38,18 +38,19 @@ class BaseViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showError(errorCode: Int) {
-        switch errorCode {
+    func showErrorMessage(errorCode: Int) {
+        let message = switch errorCode {
             case 403:
-                showAlert(title: "", message: String(localized: "error_access_denied"))
-                break
+                String(localized: "error_access_denied")
+            case 404:
+                String(localized: "error_character_not_found")
             case 500:
-                showAlert(title: "", message: String(localized: "error_service_unavailable"))
-                break
+                String(localized: "error_service_unavailable")
             default:
-                showAlert(title: "", message: String(localized: "error_cant_was_possible_perform_operation"))
-                break
+                String(localized: "error_cant_was_possible_perform_operation")
         }
+        
+        self.showAlert(title: "", message: message)
     }
     
 }
