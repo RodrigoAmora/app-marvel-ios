@@ -10,8 +10,11 @@
 "back" = "Voltar";
 "view_details"= "Ver detalhes";
 
+"no_internet" = "No internet!";
+
 // ERROR MESSAGES
 "error_access_denied" = "Você não tem permissão!";
+"error_character_not_found" = "Personagem não encontrado!";
 "error_cant_was_possible_perform_operation" = "Não foi possível realizar a operação.";
 "error_no_characters" = "Não há personagens com esse nome!";
 "error_service_unavailable" = "Serviço indisponível, por favor tente mais tarde.";

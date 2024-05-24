@@ -10,8 +10,11 @@
 "back" = "Back";
 "view_details"= "View details";
 
+"no_internet" = "No internet!";
+
 // ERROR MESSAGES
 "error_access_denied" = "You don't have permission!";
+"error_character_not_found" = "Character not found!";
 "error_cant_was_possible_perform_operation" = "Can't was possible perform operation.";
 "error_no_characters" = "Thers isn't characters with this name!";
 "error_service_unavailable" = "Service unavailable, please try later.";
