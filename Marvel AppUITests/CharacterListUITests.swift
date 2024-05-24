@@ -25,20 +25,37 @@ final class CharacterListUITests: XCTestCase {
     }
 
     override func tearDownWithError() throws {}
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
     
     // MARK: - Tests
     func testVerifiyNameOfFirstCharacter() throws {
         let characterTableView = self.app.tables
         XCTAssertEqual("3-D Man", characterTableView.cells.element(boundBy: 0).staticTexts["nameCharacter"].label)
+    }
+    
+    func testSearchCharacter() throws {
+        let characterTableView = self.app.tables
+        XCTAssertEqual("3-D Man", characterTableView.cells.element(boundBy: 0).staticTexts["nameCharacter"].label)
+//        self.app.tables["characterTableView"]//.element
+        
+        self.app.buttons["fabSearchBar"].tap()
+        
+        let characterByNameSearchView = self.app.otherElements["characterByNameSearchBar"]
+        characterByNameSearchView.tap()
+        characterByNameSearchView.typeText("Hulk")
+        
+        
+        self.app.keyboards.buttons["Search"].tap()
+//        self.app.keys.buttons[XCUIKeyboardKey.enter.rawValue].tap()
+//        self.app.keyPressure("iOSGO")
+        
+        let expectation = XCTestExpectation(description: "Your expectation")
+        let timeInSeconds = 7.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + timeInSeconds) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: timeInSeconds + 1.0)
+        
+        XCTAssertEqual("Hulk", characterTableView.cells.element(boundBy: 0).staticTexts["nameCharacter"].label)
     }
     
 }
