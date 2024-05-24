@@ -49,7 +49,7 @@ class CharacterDao {
     
     class func findCharacters() -> NSFetchedResultsController<Character> {
         let searcher: NSFetchedResultsController<Character> = {
-            var fetchRequest: NSFetchRequest<Character> = self.fetchRequest()
+            let fetchRequest: NSFetchRequest<Character> = self.fetchRequest()
             let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
             fetchRequest.sortDescriptors = [sortDescriptor]
             
