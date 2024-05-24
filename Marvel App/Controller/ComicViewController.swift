@@ -50,6 +50,7 @@ class ComicViewController: UIViewController {
         
         self.descriptionLabel.textAlignment = .center
         self.descriptionLabel.textColor = .black
+        self.descriptionLabel.sizeToFit()
         
         guard let comicDescription = self.comic?.comicDescription else { return }
         if comicDescription.isEmpty {
