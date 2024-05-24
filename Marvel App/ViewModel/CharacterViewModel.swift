@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import UIKit
+import Network
 
 class CharacterViewModel {
     
@@ -23,31 +24,36 @@ class CharacterViewModel {
     
     // MARK: - Methods
     func getCharacters(offset: Int) {
-        self.characterRepository.getCharacters(offset: offset, completion: { [weak self] resource in
-            guard let characters: [Character] = resource.result ?? [] else { return }
-
-            if characters.count == 0 {
-                self?.characterDelegate.showError(resource.errorCode ?? 0)
+        let monitor = NWPathMonitor()
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("Internet connection is available.")
+                self.characterRepository.getCharacters(offset: offset, completion: { [weak self] resource in
+                    guard let characters: [Character] = resource.result ?? [] else { return }
+                    self?.characterDelegate.populateTableView(characters: characters)
+                })
             } else {
-                let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                for character in characters {
-                    print(character.name)
-                    CharacterDao.save(character)
-                }
-                self?.characterDelegate.populateTableView(characters: characters)
+                print("Internet connection is not available.")
+                let characters = self.characterRepository.getCharactersFromDataBase()
+                self.characterDelegate.populateTableView(characters: characters)
             }
-        })
+        }
+        
+        let queue = DispatchQueue(label: "NetworkMonitor")
+        monitor.start(queue: queue)
     }
     
     func getCharactersByName(_ name: String) {
         self.characterRepository.getCharactersByName(name: name, completion: { [weak self] resource in
             guard let characters: [Character] = resource.result ?? [] else { return }
 
-            if characters.count == 0 {
-                self?.characterDelegate.showError(resource.errorCode ?? 0)
+            let errorCode = resource.errorCode
+            if errorCode != nil {
+                self?.characterDelegate.showError(errorCode ?? 0)
             } else {
                 self?.characterDelegate.replaceAll(characters: characters)
             }
         })
     }
+    
 }
