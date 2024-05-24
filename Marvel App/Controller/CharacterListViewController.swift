@@ -10,6 +10,7 @@ import UIKit
 import MaterialComponents.MaterialButtons
 import CoreData
 import AVFoundation
+import Network
 
 class CharacterListViewController : BaseViewController {
     
@@ -201,31 +202,39 @@ extension CharacterListViewController: CharacterDelegate {
     func populateTableView(characters: [Character]) {
         self.activityIndicatorView.hideActivityIndicatorView()
         
-        self.characters = characters
-        self.characterTableView.reloadData()
-        
-        if offset != 0 {
-            let targetRonIdexPath = IndexPath(row: self.characters.count-5, section: 0)
-            self.characterTableView.scrollToRow(at: targetRonIdexPath, at: .middle, animated: false)
+        if characters.isEmpty {
+            self.showAlert(title: "", message: String(localized: "error_character_not_found"))
+        } else {
+            self.characters = characters
+            self.characterTableView.reloadData()
+            
+            if offset != 0 {
+                let targetRonIdexPath = IndexPath(row: self.characters.count-5, section: 0)
+                self.characterTableView.scrollToRow(at: targetRonIdexPath, at: .middle, animated: false)
+            }
         }
     }
     
     func replaceAll(characters: [Character]) {
         self.activityIndicatorView.hideActivityIndicatorView()
         
-        self.characters.removeAll()
-        self.characters = characters
-        self.characterTableView.reloadData()
-        self.searchBar.isHidden = true
-        
-        if characters.count > 10 {
-            let targetRonIdexPath = IndexPath(row: 0, section: 0)
-            self.characterTableView.scrollToRow(at: targetRonIdexPath, at: .top, animated: false)
+        if characters.isEmpty {
+            self.showAlert(title: "", message: String(localized: "error_character_not_found"))
+        } else {
+            self.characters.removeAll()
+            self.characters = characters
+            self.characterTableView.reloadData()
+            self.searchBar.isHidden = true
+            
+            if characters.count > 10 {
+                let targetRonIdexPath = IndexPath(row: 0, section: 0)
+                self.characterTableView.scrollToRow(at: targetRonIdexPath, at: .top, animated: false)
+            }
         }
     }
     
     func showError(_ errorCode: Int) {
         self.activityIndicatorView.hideActivityIndicatorView()
-        self.showError(errorCode: errorCode)
+        self.showErrorMessage(errorCode: errorCode)
     }
 }
