@@ -16,6 +16,7 @@ class CharacterRepository {
     // MARK: - Methods
     func getCharacters(offset: Int, completion: @escaping(_ resource: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
         self.resource = Resource(result: [Character]())
+        self.resource?.result = CharacterDao.findCharacters().fetchedObjects ?? []
         
         self.characterService.getCharacters(offset: offset, completion: { [weak self] characterResponse, error in
             let characters: [Character] = characterResponse.data?.results ?? []
@@ -23,6 +24,10 @@ class CharacterRepository {
             if characters.count == 0 {
                 completion(Resource(result: nil, errorCode: error))
             } else {
+//                for character in characters {
+//                    CharacterDao.save(character)
+//                }
+                
                 completion(Resource(result: characters))
             }
         })
@@ -34,11 +39,16 @@ class CharacterRepository {
         self.characterService.getCharactersByName(name: name, completion: { [weak self] characterResponse, error in
             let characters: [Character] = characterResponse.data?.results ?? []
             
-            if characters.count == 0 {
+            if error != nil {
                 completion(Resource(result: nil, errorCode: error))
             } else {
                 completion(Resource(result: characters))
             }
         })
     }
+    
+    func getCharactersFromDataBase() -> [Character] {
+        return CharacterDao.findCharacters().fetchedObjects ?? []
+    }
+    
 }
