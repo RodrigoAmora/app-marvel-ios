@@ -6,20 +6,11 @@
 //
 
 import Foundation
-import UIKit
 import CoreData
 
 class CharacterDao {
     private class func fetchRequest() -> NSFetchRequest<Character> {
         return NSFetchRequest(entityName: "Character")
-    }
-    
-    func salvar(_ context: NSManagedObjectContext) {
-        do {
-            try context.save()
-        } catch {
-            print(error.localizedDescription)
-        }
     }
     
     class func load(_ fetchedResultController: NSFetchedResultsController<Character>) {
@@ -53,9 +44,9 @@ class CharacterDao {
             let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
             fetchRequest.sortDescriptors = [sortDescriptor]
             
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = CoreDataManager.getContext()
             return NSFetchedResultsController(fetchRequest: fetchRequest,
-                                              managedObjectContext: appDelegate.persistentContainer.viewContext,
+                                              managedObjectContext: context,
                                               sectionNameKeyPath: nil,
                                               cacheName: nil)
         }()
@@ -91,4 +82,5 @@ class CharacterDao {
             print(error.localizedDescription)
         }
     }
+    
 }
