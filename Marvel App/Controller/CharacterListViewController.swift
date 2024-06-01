@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 import MaterialComponents.MaterialButtons
-import CoreData
 import AVFoundation
-import Network
 
 class CharacterListViewController : BaseViewController {
     
@@ -37,9 +35,9 @@ class CharacterListViewController : BaseViewController {
     }
  
     override func viewDidAppear(_ animated: Bool) {
-        //Character.load(searcher)
         self.characters = CharacterDao.findCharacters().fetchedObjects ?? [] //searcher.fetchedObjects!
         self.characterTableView.reloadData()
+        self.activityIndicatorView.configureAndHide()
         self.getCharacters()
     }
     
@@ -89,12 +87,12 @@ class CharacterListViewController : BaseViewController {
     }
     
     private func getCharacters() {
-        self.activityIndicatorView.configureActivityIndicatorView()
+        self.activityIndicatorView.show()
         self.characterViewModel.getCharacters(offset: offset)
     }
     
     private func getCharactersByName(_ name: String) {
-        self.activityIndicatorView.configureActivityIndicatorView()
+        self.activityIndicatorView.show()
         self.characterViewModel.getCharactersByName(name)
     }
     
@@ -200,7 +198,7 @@ extension CharacterListViewController: UISearchBarDelegate {
 // MARK: - CharacterDelegaate
 extension CharacterListViewController: CharacterDelegate {
     func populateTableView(characters: [Character]) {
-        self.activityIndicatorView.hideActivityIndicatorView()
+        self.activityIndicatorView.hide()
         
         if characters.isEmpty {
             self.showAlert(title: "", message: String(localized: "error_character_not_found"))
@@ -216,7 +214,7 @@ extension CharacterListViewController: CharacterDelegate {
     }
     
     func replaceAll(characters: [Character]) {
-        self.activityIndicatorView.hideActivityIndicatorView()
+        self.activityIndicatorView.hide()
         
         if characters.isEmpty {
             self.showAlert(title: "", message: String(localized: "error_character_not_found"))
@@ -234,7 +232,7 @@ extension CharacterListViewController: CharacterDelegate {
     }
     
     func showError(_ errorCode: Int) {
-        self.activityIndicatorView.hideActivityIndicatorView()
+        self.activityIndicatorView.hide()
         self.showErrorMessage(errorCode: errorCode)
     }
 }
