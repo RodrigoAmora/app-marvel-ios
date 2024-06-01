@@ -9,14 +9,23 @@ import Foundation
 import UIKit
 
 extension UIActivityIndicatorView {
-    func configureActivityIndicatorView() {
+    func configureAndHide() {
+        self.configure()
+        self.hide()
+    }
+    
+    func configure() {
         self.backgroundColor = .gray
         self.layer.cornerRadius = CGRectGetWidth(self.frame)/4.0
         self.color = .blue
         self.isHidden = false
     }
     
-    func hideActivityIndicatorView() {
+    func hide() {
+        self.isHidden = true
+    }
+    
+    func show() {
         self.isHidden = true
     }
 }
