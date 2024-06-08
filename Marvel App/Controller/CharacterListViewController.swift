@@ -35,7 +35,7 @@ class CharacterListViewController : BaseViewController {
     }
  
     override func viewDidAppear(_ animated: Bool) {
-        self.characters = CharacterDao.findCharacters().fetchedObjects ?? [] //searcher.fetchedObjects!
+        //self.characters = CharacterDao.findCharacters().fetchedObjects ?? [] //searcher.fetchedObjects!
         self.characterTableView.reloadData()
         self.activityIndicatorView.configureAndHide()
         self.getCharacters()
@@ -198,15 +198,13 @@ extension CharacterListViewController: UISearchBarDelegate {
 // MARK: - CharacterDelegaate
 extension CharacterListViewController: CharacterDelegate {
     func populateTableView(characters: [Character]) {
-        self.activityIndicatorView.hide()
-        
-        if characters.isEmpty {
-            self.showAlert(title: "", message: String(localized: "error_character_not_found"))
-        } else {
+        DispatchQueue.main.async {
+            self.activityIndicatorView.hide()
+            
             self.characters = characters
             self.characterTableView.reloadData()
             
-            if offset != 0 {
+            if self.offset != 0 {
                 let targetRonIdexPath = IndexPath(row: self.characters.count-5, section: 0)
                 self.characterTableView.scrollToRow(at: targetRonIdexPath, at: .middle, animated: false)
             }
@@ -214,19 +212,21 @@ extension CharacterListViewController: CharacterDelegate {
     }
     
     func replaceAll(characters: [Character]) {
-        self.activityIndicatorView.hide()
-        
-        if characters.isEmpty {
-            self.showAlert(title: "", message: String(localized: "error_character_not_found"))
-        } else {
-            self.characters.removeAll()
-            self.characters = characters
-            self.characterTableView.reloadData()
-            self.searchBar.isHidden = true
+        DispatchQueue.main.async {
+            self.activityIndicatorView.hide()
             
-            if characters.count > 10 {
-                let targetRonIdexPath = IndexPath(row: 0, section: 0)
-                self.characterTableView.scrollToRow(at: targetRonIdexPath, at: .top, animated: false)
+            if characters.isEmpty {
+                self.showAlert(title: "", message: String(localized: "error_character_not_found"))
+            } else {
+                self.characters.removeAll()
+                self.characters = characters
+                self.characterTableView.reloadData()
+                self.searchBar.isHidden = true
+                
+                if characters.count > 10 {
+                    let targetRonIdexPath = IndexPath(row: 0, section: 0)
+                    self.characterTableView.scrollToRow(at: targetRonIdexPath, at: .top, animated: false)
+                }
             }
         }
     }
@@ -234,5 +234,12 @@ extension CharacterListViewController: CharacterDelegate {
     func showError(_ errorCode: Int) {
         self.activityIndicatorView.hide()
         self.showErrorMessage(errorCode: errorCode)
+    }
+    
+    func noInternet() {
+        DispatchQueue.main.async {
+            self.activityIndicatorView.hide()
+            self.showAlert(title: "", message: String(localized: "no_internet"))
+        }
     }
 }
