@@ -11,4 +11,5 @@ protocol CharacterDelegate {
     func populateTableView(characters: [Character])
     func replaceAll(characters: [Character])
     func showError(_ errorCode: Int)
+    func noInternet()
 }
