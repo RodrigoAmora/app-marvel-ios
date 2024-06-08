@@ -10,7 +10,7 @@
 "back" = "Voltar";
 "view_details"= "Ver detalhes";
 
-"no_internet" = "No internet!";
+"no_internet" = "Sem internet!";
 
 // ERROR MESSAGES
 "error_access_denied" = "Você não tem permissão!";
