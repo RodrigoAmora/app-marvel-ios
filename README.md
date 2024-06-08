@@ -1,9 +1,10 @@
 # app-marvel-ios
 Descrição:
 ----------
-App iOS Nativo que consulta a API da Marvel: https://developer.marvel.com/ <br>
-
+Projeto que exibe personagens e HQs da Marvel.<br>
 O App roda a partir do iOS 15.0, usa a arquitetura MVVVM, Persistência dos dados off-line e Testes de UI.
+<br><br>
+O projeto consulta a API oficial da Marvel: https://developer.marvel.com/
 
 Dependências:
 -------------
@@ -19,8 +20,7 @@ Autor:
 ------
 <b>Rodrigo Amora</b>
 
-LinkedIn: https://linkedin.com/in/rodrigoamora
-
+LinkedIn: https://linkedin.com/in/rodrigoamora <br>
 E-mail: rodrigo.amora.freitas@gmail.com
 
 <hr>
