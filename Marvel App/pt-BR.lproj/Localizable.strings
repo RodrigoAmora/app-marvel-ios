@@ -8,6 +8,7 @@
 "app_name" = "Mavel App";
 
 "back" = "Voltar";
+"button_ok" = "OK";
 "view_details"= "Ver detalhes";
 
 "no_internet" = "Sem internet!";

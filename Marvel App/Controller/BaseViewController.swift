@@ -32,7 +32,7 @@ class BaseViewController: UIViewController {
                                       message: message,
                                       preferredStyle: .alert)
         
-        let buttonOK = UIAlertAction(title: "OK", style: .cancel)
+        let buttonOK = UIAlertAction(title: String(localized: "button_ok"), style: .cancel)
         
         alert.addAction(buttonOK)
         present(alert, animated: true, completion: nil)
@@ -52,5 +52,4 @@ class BaseViewController: UIViewController {
         
         self.showAlert(title: "", message: message)
     }
-    
 }
