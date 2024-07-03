@@ -27,14 +27,12 @@ class CharacterViewController: BaseViewController {
     class func intanciate(_ character: Character) -> CharacterViewController {
         let controller = CharacterViewController()
         controller.character = character
-        
         return controller
     }
     
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("CharacterViewController")
         self.configureNavigationBar()
         self.initViews()
         self.configureDelegates()
@@ -70,7 +68,6 @@ class CharacterViewController: BaseViewController {
         self.descriptionCharaterLabel.numberOfLines = 0
         self.descriptionCharaterLabel.lineBreakMode = .byWordWrapping
         self.descriptionCharaterLabel.sizeToFit()
-        
         self.descriptionCharaterLabel.overrideUserInterfaceStyle = .unspecified
         
         self.comicsPickerView.overrideUserInterfaceStyle = .unspecified
