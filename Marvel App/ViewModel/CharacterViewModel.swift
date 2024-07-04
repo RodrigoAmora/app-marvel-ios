@@ -27,15 +27,14 @@ class CharacterViewModel {
         let monitor = NWPathMonitor()
         monitor.pathUpdateHandler = { path in
             if path.status == .satisfied {
-                print("Internet connection is available.")
                 self.characterRepository.getCharacters(offset: offset, completion: { [weak self] resource in
                     guard let characters: [Character] = resource.result ?? [] else { return }
                     self?.characterDelegate.populateTableView(characters: characters)
                 })
             } else {
-                print("Internet connection is not available.")
                 let characters = self.characterRepository.getCharactersFromDataBase()
                 self.characterDelegate.populateTableView(characters: characters)
+                self.characterDelegate.noInternet()
             }
         }
         
