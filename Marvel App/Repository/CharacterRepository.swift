@@ -16,7 +16,7 @@ class CharacterRepository {
     // MARK: - Methods
     func getCharacters(offset: Int, completion: @escaping(_ resource: Resource<[Character]?>) -> Void) -> Resource<[Character]?>? {
         self.resource = Resource(result: [Character]())
-        self.resource?.result = CharacterDao.findCharacters().fetchedObjects ?? []
+        self.resource?.result = CharacterDao.findCharacters()
         
         self.characterService.getCharacters(offset: offset, completion: { [weak self] characterResponse, error in
             let characters: [Character] = characterResponse.data?.results ?? []
@@ -24,9 +24,11 @@ class CharacterRepository {
             if characters.count == 0 {
                 completion(Resource(result: nil, errorCode: error))
             } else {
-//                for character in characters {
-//                    CharacterDao.save(character)
-//                }
+                self?.deleteCharacters()
+                
+                for character in characters {
+                    self?.saveCharactersFromDataBase(character)
+                }
                 
                 completion(Resource(result: characters))
             }
@@ -48,7 +50,15 @@ class CharacterRepository {
     }
     
     func getCharactersFromDataBase() -> [Character] {
-        return CharacterDao.findCharacters().fetchedObjects ?? []
+        return CharacterDao.findCharacters()
     }
     
+    private func saveCharactersFromDataBase(_ character: Character) {
+        ThumbnailDao.save(character.thumbnail!)
+        CharacterDao.save(character)
+    }
+    
+    private func deleteCharacters() {
+        CharacterDao.cleanCoreData()
+    }
 }

@@ -23,37 +23,26 @@ class CharacterDao {
     
     class func save(_ character: Character) {
         let context = CoreDataManager.getContext()
-        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
-        
-        let managedObj = NSManagedObject(entity: entity!, insertInto: context)
-        managedObj.setValue(character.id, forKey: "id")
-        managedObj.setValue(character.name, forKey: "name")
-        managedObj.setValue(character.characterDescription, forKey: "characterDescription")
-        managedObj.setValue(character.thumbnail, forKey: "thumbnail")
+                
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "Character", into: context)
+        entity.setValue(character.id, forKey: "id")
+        entity.setValue(character.name, forKey: "name")
+        entity.setValue(character.characterDescription, forKey: "characterDescription")
+        entity.setValue(character.thumbnail, forKey: "thumbnail")
+    }
+    
+    class func findCharacters() -> [Character] {
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+                
+        let fetchRequest: NSFetchRequest<Character> = self.fetchRequest()
+        fetchRequest.sortDescriptors = [sort]
         
         do {
-            try context.save()
+            return try CoreDataManager.getContext().fetch(fetchRequest)
         } catch {
-            print(error.localizedDescription)
+            return []
         }
     }
-    
-    class func findCharacters() -> NSFetchedResultsController<Character> {
-        let searcher: NSFetchedResultsController<Character> = {
-            let fetchRequest: NSFetchRequest<Character> = self.fetchRequest()
-            let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-            fetchRequest.sortDescriptors = [sortDescriptor]
-            
-            let context = CoreDataManager.getContext()
-            return NSFetchedResultsController(fetchRequest: fetchRequest,
-                                              managedObjectContext: context,
-                                              sectionNameKeyPath: nil,
-                                              cacheName: nil)
-        }()
-        
-        return searcher
-    }
-    
     
     class func deleteCharacter(_ character: Character) {
         let context = CoreDataManager.getContext()
