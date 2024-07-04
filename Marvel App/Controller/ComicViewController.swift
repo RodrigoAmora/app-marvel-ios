@@ -48,15 +48,18 @@ class ComicViewController: UIViewController {
         self.titleLabel.textAlignment = .center
         self.titleLabel.text = self.comic?.title
         
-        self.descriptionLabel.textAlignment = .center
-        self.descriptionLabel.textColor = .black
-        self.descriptionLabel.sizeToFit()
-        
         guard let comicDescription = self.comic?.comicDescription else { return }
         if comicDescription.isEmpty {
             self.descriptionLabel.text = String(localized: "comic_no_description")
+            self.descriptionLabel.textAlignment = .center
         } else {
             self.descriptionLabel.text = self.comic?.comicDescription
         }
+        
+        self.descriptionLabel.numberOfLines = 0
+        self.descriptionLabel.lineBreakMode = .byWordWrapping
+        self.descriptionLabel.textColor = .black
+        self.descriptionLabel.sizeToFit()
+        self.descriptionLabel.overrideUserInterfaceStyle = .unspecified
     }
 }
