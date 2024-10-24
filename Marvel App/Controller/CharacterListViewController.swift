@@ -35,7 +35,6 @@ class CharacterListViewController : BaseViewController {
     }
  
     override func viewDidAppear(_ animated: Bool) {
-        //self.characters = CharacterDao.findCharacters().fetchedObjects ?? [] //searcher.fetchedObjects!
         self.characterTableView.reloadData()
         self.activityIndicatorView.configureAndHide()
         self.getCharacters()
@@ -166,6 +165,14 @@ extension CharacterListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let lastCellRowIndex = tableView.indexPathsForVisibleRows?.last?.row {
+            if self.characters.count - 1 >= lastCellRowIndex + 1 {
+                self.fab?.isHidden = false
+            } else {
+                self.fab?.isHidden = true
+            }
+        }
+        
         if indexPath.row == self.characters.count-1, self.characters.count >= 20 {
             self.paginateTableView()
         }
