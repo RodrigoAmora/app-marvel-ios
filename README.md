@@ -2,13 +2,13 @@
 Descrição:
 ----------
 Projeto que exibe personagens e HQs da Marvel.<br>
-O App roda a partir do iOS 15.0, usa a arquitetura MVVVM, Persistência dos dados off-line e Testes de UI.
+O projeto roda a partir do iOS 15.0, usa a arquitetura MVVVM, Persistência dos dados off-line e Testes de UI.
 <br><br>
 O projeto consulta a API oficial da Marvel: https://developer.marvel.com/
 
 Dependências:
 -------------
-O App usa as seguintes dependências:
+O projeto usa as seguintes dependências:
 
 * Alamofire
 * MaterialComponents/Buttons
