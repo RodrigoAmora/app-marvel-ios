@@ -33,15 +33,14 @@ class CharacterViewController: BaseViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureNavigationBar()
+        self.configureNavigationBarAndRightBarButtonItem()
+        self.configureBackButton()
         self.initViews()
         self.configureDelegates()
         self.getComicsByCharacterId()
     }
     
-    private func configureNavigationBar() {
-        self.navigationItem.title = String(localized: "app_name")
-        
+    private func configureBackButton() {
         self.navigationController?.navigationBar.backgroundColor = .blue
         self.navigationController?.navigationBar.tintColor = .cyan
         self.navigationController?.navigationBar.topItem?.title = String(localized: "back")
@@ -53,11 +52,9 @@ class CharacterViewController: BaseViewController {
         
         self.nameCharaterLabel.textAlignment = .center
         self.nameCharaterLabel.text = self.character.name
-        self.nameCharaterLabel.overrideUserInterfaceStyle = .unspecified
         
         self.comicsLabel.backgroundColor = .gray
         self.comicsLabel.text = String(localized: "comics")
-        self.comicsLabel.overrideUserInterfaceStyle = .unspecified
         
         if self.character.characterDescription.isEmpty {
             self.descriptionCharaterLabel.text = String(localized: "character_no_description")
@@ -68,9 +65,6 @@ class CharacterViewController: BaseViewController {
         self.descriptionCharaterLabel.numberOfLines = 0
         self.descriptionCharaterLabel.lineBreakMode = .byWordWrapping
         self.descriptionCharaterLabel.sizeToFit()
-        self.descriptionCharaterLabel.overrideUserInterfaceStyle = .unspecified
-        
-        self.comicsPickerView.overrideUserInterfaceStyle = .unspecified
     }
     
     private func configureDelegates() {
