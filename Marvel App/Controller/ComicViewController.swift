@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ComicViewController: UIViewController {
+class ComicViewController: BaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
@@ -28,16 +28,13 @@ class ComicViewController: UIViewController {
     
     // MARK: - View life cycle
     override func viewDidLoad() {
-        self.configureNavigationBar()
+        self.configureNavigationBarAndRightBarButtonItem()
+        self.configureBackButton()
         self.initViews()
     }
     
     // MARK: - Methods
-    private func configureNavigationBar() {
-        self.navigationItem.title = String(localized: "app_name")
-        
-        self.navigationController?.navigationBar.backgroundColor = .blue
-        self.navigationController?.navigationBar.tintColor = .cyan
+    private func configureBackButton() {
         self.navigationController?.navigationBar.topItem?.title = String(localized: "back")
     }
     
