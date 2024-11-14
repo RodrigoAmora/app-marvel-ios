@@ -10,7 +10,7 @@ import UIKit
 import MaterialComponents.MaterialButtons
 import AVFoundation
 
-class CharacterListViewController : BaseViewController {
+class CharacterListViewController: BaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -28,6 +28,7 @@ class CharacterListViewController : BaseViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureNavigationBarAndRightBarButtonItem()
         self.configureNavBarAndSearchBar()
         self.configureFloatingButton()
         self.configureTableView()
