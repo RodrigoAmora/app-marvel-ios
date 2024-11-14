@@ -52,4 +52,20 @@ class BaseViewController: UIViewController {
         
         self.showAlert(title: "", message: message)
     }
+    
+    func configureNavigationBarAndRightBarButtonItem() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.blue
+
+        let textColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        appearance.titleTextAttributes = textColor
+        
+        self.navigationController?.navigationBar.standardAppearance = appearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        self.navigationController?.navigationBar.tintColor = .black
+        
+        self.navigationItem.title = String(localized: "app_name")
+        
+    }
 }
