@@ -67,5 +67,15 @@ class BaseViewController: UIViewController {
         
         self.navigationItem.title = String(localized: "app_name")
         
+        let about = UIAction(title: String(localized: "menu_about"), image: UIImage(systemName: "info.circle.fill")) { _ in
+            self.changeViewControllerWithPresent(AboutViewController())
+        }
+        
+        let btRightMenu = UIBarButtonItem()
+        btRightMenu.image = UIImage(systemName: "text.justify")
+        btRightMenu.menu = UIMenu(title: "", children: [about])
+        
+        self.navigationItem.rightBarButtonItem = btRightMenu
+        self.navigationItem.rightBarButtonItem?.tintColor = .white
     }
 }
