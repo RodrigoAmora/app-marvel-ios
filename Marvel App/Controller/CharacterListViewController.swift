@@ -75,11 +75,6 @@ class CharacterListViewController: BaseViewController {
     }
     
     private func configureNavBarAndSearchBar() {
-        self.navigationItem.title = String(localized: "app_name")
-        
-        self.navigationController?.navigationBar.backgroundColor = .blue
-        self.navigationController?.navigationBar.tintColor = .cyan
-        
         self.searchBar.accessibilityIdentifier = "characterByNameSearchBar"
         self.searchBar.showsLargeContentViewer = true
         self.searchBar.isHidden = true
