@@ -57,6 +57,5 @@ class ComicViewController: BaseViewController {
         self.descriptionLabel.lineBreakMode = .byWordWrapping
         self.descriptionLabel.textColor = .black
         self.descriptionLabel.sizeToFit()
-        self.descriptionLabel.overrideUserInterfaceStyle = .unspecified
     }
 }
