@@ -20,6 +20,15 @@
 "error_no_characters" = "Não há personagens com esse nome!";
 "error_service_unavailable" = "Serviço indisponível, por favor tente mais tarde.";
 
+// MENU
+"menu_about" = "Sobre";
+
+// ABOUT
+"created_by" = "Criado por Rodrigo Amora";
+"email_author" = "rodrigo.amora.freitas@gmail.com";
+"site_author" = "http://rodrigoamora.com.br";
+"version_app" = "Versão app: %@";
+
 // CHACRACTERS
 "search_character_by_name" = "Buscar personagem pelo nome....";
 "character_no_description" = "Este personagem não possui descrição...";

@@ -20,6 +20,15 @@
 "error_no_characters" = "Thers isn't characters with this name!";
 "error_service_unavailable" = "Service unavailable, please try later.";
 
+// MENU
+"menu_about" = "About";
+
+// ABOUT
+"created_by" = "Criado por Rodrigo Amora";
+"email_author" = "rodrigo.amora.freitas@gmail.com";
+"site_author" = "http://rodrigoamora.com.br";
+"version_app" = "Versão app: %@";
+
 // CHACRACTERS
 "search_character_by_name" = "Search character by name....";
 "character_no_description" = "This character don't have descrption...";
