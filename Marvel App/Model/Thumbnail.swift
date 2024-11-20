@@ -42,10 +42,12 @@ class Thumbnail: NSManagedObject, Decodable {
         case path = "path"
     }
     
+    // MARK: - Methods
     func formatURL() -> String {
         return "\(path).\(extensionPhoto)"
     }
     
+    // MARK: - ManagedObjectError
     enum ManagedObjectError: Error {
         case decodeContextError
         case decodeEntityError
