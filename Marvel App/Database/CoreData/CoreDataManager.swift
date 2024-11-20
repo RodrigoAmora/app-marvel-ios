@@ -10,8 +10,8 @@ import CoreData
 import UIKit
 
 class CoreDataManager: NSObject {
-   class func getContext() -> NSManagedObjectContext {
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     return appDelegate.persistentContainer.viewContext
-   }
+    class func getContext() -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
 }
