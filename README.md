@@ -1,7 +1,7 @@
 # app-marvel-ios
 Descrição:
 ----------
-Projeto que exibe personagens e HQs da Marvel.<br>
+Projeto que lista personagens e HQs da Marvel.<br>
 O projeto roda a partir do iOS 15.0, usa a arquitetura MVVVM, Persistência dos dados off-line e Testes de UI.
 <br><br>
 O projeto consulta a API oficial da Marvel: https://developer.marvel.com/
