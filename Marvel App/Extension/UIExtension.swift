@@ -31,6 +31,19 @@ extension UIActivityIndicatorView {
 }
 
 extension UIImageView {
+    private func roundedCorners() {
+        self.backgroundColor = .blue
+        self.clipsToBounds = true
+        self.layoutIfNeeded()
+        self.layer.cornerRadius = self.frame.size.width / 2
+    }
+    
+    func roundedImage() {
+        self.roundedCorners()
+        self.contentMode = .scaleToFill
+        self.layer.cornerRadius = bounds.height / 5
+    }
+    
     func loadImageFromURL(_ url: String) {
         guard let imageURL = URL(string: url) else { return }
 

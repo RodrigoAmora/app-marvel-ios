@@ -35,6 +35,7 @@ class CharacterTableViewCell: UITableViewCell {
         self.nameCharacterLabel.text = character?.name
         
         guard let photoCharacterURL = character?.thumbnail?.formatURL() else { return }
+        self.photoCharacterImageView.roundedImage()
         self.photoCharacterImageView.loadImageFromURL(photoCharacterURL)
     }
     
