@@ -75,10 +75,22 @@ class CharacterListViewController: BaseViewController {
     }
     
     private func configureNavBarAndSearchBar() {
+        let searchBarPosY: CGFloat = switch UIDevice.current.userInterfaceIdiom {
+            case .pad:
+                75
+            
+            case .phone:
+                95
+            
+            default:
+                85
+        }
+        
         self.searchBar.accessibilityIdentifier = "characterByNameSearchBar"
-        self.searchBar.showsLargeContentViewer = true
+        self.searchBar.frame.origin.y = searchBarPosY
         self.searchBar.isHidden = true
         self.searchBar.placeholder = String(localized: "search_character_by_name")
+        self.searchBar.showsLargeContentViewer = true
     }
     
     private func getCharacters() {
