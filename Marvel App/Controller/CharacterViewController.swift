@@ -59,13 +59,14 @@ class CharacterViewController: BaseViewController {
         
         if self.character.characterDescription.isEmpty {
             self.descriptionCharaterLabel.text = String(localized: "character_no_description")
+            
+            self.descriptionCharaterLabel.textAlignment = .center
         } else {
             self.descriptionCharaterLabel.text = self.character.characterDescription
+            self.descriptionCharaterLabel.numberOfLines = 0
+            self.descriptionCharaterLabel.lineBreakMode = .byWordWrapping
+            self.descriptionCharaterLabel.sizeToFit()
         }
-        
-        self.descriptionCharaterLabel.numberOfLines = 0
-        self.descriptionCharaterLabel.lineBreakMode = .byWordWrapping
-        self.descriptionCharaterLabel.sizeToFit()
     }
     
     private func configureDelegates() {
