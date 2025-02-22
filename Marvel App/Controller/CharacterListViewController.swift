@@ -26,9 +26,12 @@ class CharacterListViewController: BaseViewController {
     private var player: AVAudioPlayer?
     
     // MARK: - View life cycle
+    override func viewWillAppear(_ animated: Bool) {
+        self.configureNavigationBarAndRightBarButtonItem()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureNavigationBarAndRightBarButtonItem()
         self.configureNavBarAndSearchBar()
         self.configureFloatingButton()
         self.configureTableView()
