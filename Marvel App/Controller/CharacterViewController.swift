@@ -40,6 +40,7 @@ class CharacterViewController: BaseViewController {
         self.getComicsByCharacterId()
     }
     
+    // MARK: - Methods
     private func configureBackButton() {
         self.navigationController?.navigationBar.backgroundColor = .blue
         self.navigationController?.navigationBar.tintColor = .cyan
