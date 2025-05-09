@@ -16,17 +16,18 @@ extension UIActivityIndicatorView {
     
     func configure() {
         self.backgroundColor = .gray
-        self.layer.cornerRadius = CGRectGetWidth(self.frame)/4.0
         self.color = .blue
-        self.isHidden = false
+        self.layer.cornerRadius = CGRectGetWidth(self.frame)/4.0
     }
     
     func hide() {
         self.isHidden = true
+        self.stopAnimating()
     }
     
     func show() {
-        self.isHidden = true
+        self.isHidden = false
+        self.startAnimating()
     }
 }
 
