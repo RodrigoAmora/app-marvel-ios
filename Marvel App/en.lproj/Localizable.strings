@@ -24,10 +24,10 @@
 "menu_about" = "About";
 
 // ABOUT
-"created_by" = "Criado por Rodrigo Amora";
+"created_by" = "Created by Rodrigo Amora";
 "email_author" = "rodrigo.amora.freitas@gmail.com";
 "site_author" = "http://rodrigoamora.com.br";
-"version_app" = "Versão app: %@";
+"version_app" = "Version app: %@";
 
 // CHACRACTERS
 "search_character_by_name" = "Search character by name....";
