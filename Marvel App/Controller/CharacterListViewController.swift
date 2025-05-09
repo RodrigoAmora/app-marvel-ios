@@ -32,6 +32,7 @@ class CharacterListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.activityIndicatorView.configureAndHide()
         self.configureNavBarAndSearchBar()
         self.configureFloatingButton()
         self.configureTableView()
@@ -177,12 +178,13 @@ extension CharacterListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let lastCellRowIndex = tableView.indexPathsForVisibleRows?.last?.row {
-            if self.characters.count - 1 >= lastCellRowIndex + 1 {
+            if self.characters.count - 1 > lastCellRowIndex + 1 {
                 self.fab?.isHidden = false
             } else {
                 self.fab?.isHidden = true
             }
         }
+
         
         if indexPath.row == self.characters.count-1, self.characters.count >= 20 {
             self.paginateTableView()
